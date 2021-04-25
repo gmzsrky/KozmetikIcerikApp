@@ -15,7 +15,8 @@ const HomePage = () => {
   };
 
   //firebase
-  var docRef = db.collection("deneme").doc("madde");
+  var db=Firebase.firestore();
+  var docRef = db.collection("Deneme").doc("madde");
 
   docRef.get().then((doc) => {
       if (doc.exists) {
