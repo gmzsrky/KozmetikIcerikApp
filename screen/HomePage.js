@@ -1,5 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import React, { useState ,useEffect,useCallback} from "react";
+import { ScrollView } from 'react-native';
 import { TouchableOpacity,FlatList,Text, View,Image} from 'react-native';
 import { StyleSheet} from 'react-native';
 import { Card, Button, Icon,SearchBar} from 'react-native-elements'
@@ -36,7 +37,7 @@ const HomePage = () => {
           }
         ); 
   return (
-  <View style={styles.container}>
+  <ScrollView style={styles.container}>
       
       <TouchableOpacity style={styles.searchBar}>
       <SearchBar 
@@ -51,15 +52,72 @@ const HomePage = () => {
   <Card.Title>HELLO WORLD</Card.Title>
   <Card.Divider/>
   <Card.Image source={require('../assets/on.jpg')}>
-    <Text style={{marginBottom: 10}}>
-      The idea with React Native Elements is more about component structure than actual design.
-    </Text>
+  <Text style={{marginBottom:"40%"}}></Text>
     <Button
       icon={<Icon name='code' color='#ffffff' />}
       buttonStyle={{borderRadius: 0, marginLeft: 0, marginRight: 0, marginBottom: 0}}
       title='VIEW NOW' />
   </Card.Image>
 </Card>
+
+
+<Card style={styles.card}>
+  <Card.Title>HELLO WORLD</Card.Title>
+  <Card.Divider/>
+  <Card.Image source={require('../assets/on.jpg')}>
+  <Text style={{marginBottom:"40%"}}></Text>
+    <Button
+      icon={<Icon name='code' color='#ffffff' />}
+      buttonStyle={{borderRadius: 0, marginLeft: 0, marginRight: 0, marginBottom: 0}}
+      title='VIEW NOW' />
+  </Card.Image>
+</Card>
+ 
+
+
+<Card style={styles.card}>
+  <Card.Title>HELLO WORLD</Card.Title>
+  <Card.Divider/>
+  <Card.Image source={require('../assets/on.jpg')}>
+  <Text style={{marginBottom:"40%"}}></Text>
+    <Button
+      icon={<Icon name='code' color='#ffffff' />}
+      buttonStyle={{borderRadius: 0, marginLeft: 0, marginRight: 0, marginBottom: 0}}
+      title='VIEW NOW' />
+  </Card.Image>
+</Card>
+
+
+
+
+<Card style={styles.card}>
+  <Card.Title>HELLO WORLD</Card.Title>
+  <Card.Divider/>
+  <Card.Image source={require('../assets/on.jpg')}>
+  <Text style={{marginBottom:"40%"}}></Text>
+    <Button
+      icon={<Icon name='code' color='#ffffff' />}
+      buttonStyle={{borderRadius: 0, marginLeft: 0, marginRight: 0, marginBottom: 0}}
+      title='VIEW NOW' />
+  </Card.Image>
+</Card>
+
+
+
+
+
+<Card style={styles.card}>
+  <Card.Title>HELLO WORLD</Card.Title>
+  <Card.Divider/>
+  <Card.Image source={require('../assets/on.jpg')}>
+  <Text style={{marginBottom:"40%"}}></Text>
+    <Button
+      icon={<Icon name='code' color='#ffffff' />}
+      buttonStyle={{borderRadius: 0, marginLeft: 0, marginRight: 0, marginBottom: 0}}
+      title='VIEW NOW' />
+  </Card.Image>
+</Card>
+
 
               <FlatList
                 data={x}
@@ -73,7 +131,8 @@ const HomePage = () => {
 
 
       <StatusBar style="auto" />
-    </View>
+    </ScrollView>
+    
     
   );
 
