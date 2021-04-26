@@ -8,6 +8,10 @@ import { Card, Button, Icon,SearchBar} from 'react-native-elements'
 import Firebase from '../config/firebase'
 
 
+
+//disable yellow warnings on EXPO client!
+console.disableYellowBox = true;
+
 const HomePage = () => { 
   const [search, setsearch] = useState("");
   updateSearch = (search) => {
