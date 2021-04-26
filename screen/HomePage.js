@@ -1,8 +1,8 @@
 import { StatusBar } from 'expo-status-bar';
 import React, { useState ,useEffect,useCallback} from "react";
-import { TouchableOpacity } from 'react-native';
-import { StyleSheet, Text, View,Image } from 'react-native';
-import { Card, ListItem, Button, Icon,SearchBar} from 'react-native-elements'
+import { TouchableOpacity,FlatList,Text, View,Image} from 'react-native';
+import { StyleSheet} from 'react-native';
+import { Card, Button, Icon,SearchBar} from 'react-native-elements'
 
 import Firebase from '../config/firebase'
 
@@ -14,23 +14,27 @@ const HomePage = () => {
 
   };
 
+  renderList = (list) => {
+    return <Text style={{marginBottom: 10}}>{list.urun}</Text>
+  };
+
   //firebase
-  var db=Firebase.firestore();
-  var docRef = db.collection("Deneme").doc("madde");
+  const [x,setx]=useState("");
+  const ref =  Firebase.firestore().collection('Bakod');
+          const getDoc = ref.doc("8562354")
+          .onSnapshot(doc => {
+            const data = doc.data().icerik;
 
-  docRef.get().then((doc) => {
-      if (doc.exists) {
-          console.log("Document data:", doc.data());
-      } else {
-          // doc.data() will be undefined in this case
-          console.log("No such document!");
-      }
-  }).catch((error) => {
-      console.log("Error getting document:", error);
-  });
+            const privateMessages = [];
+            for (const urun in data) {
+              privateMessages.push({
+                urun:data[urun].urun,
+              });
+            }
 
-
-
+            setx(privateMessages)
+          }
+        ); 
   return (
   <View style={styles.container}>
       
@@ -56,6 +60,17 @@ const HomePage = () => {
       title='VIEW NOW' />
   </Card.Image>
 </Card>
+
+              <FlatList
+                data={x}
+                horizontal={false}
+                showsHorizontalScrollIndicator={false}
+                renderItem={({ item }) => renderList(item)}
+                contentContainerStyle={{ flex: 1 }}
+            />
+
+
+
 
       <StatusBar style="auto" />
     </View>
