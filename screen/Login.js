@@ -21,7 +21,7 @@ const Login = props => {
 
     Firebase.auth()
         .signInWithEmailAndPassword(email, password)
-        .then(() => navigation.navigate('Anasayfa'))
+        .then(() => navigation.navigate('Gecis'))
         .catch(error => alert(error))
 }
 const saveValueFunction = () => {

@@ -32,7 +32,7 @@ const SignUp = props => {
      })
     Firebase.auth()
         .createUserWithEmailAndPassword(email, password)
-        .then(() => alert("Başarıyla kayıt oldunuz."))
+        .then(() =>navigation.navigate("Gecis"))
         .catch(error => alert(error))
 }
 

@@ -3,11 +3,11 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 
 
-import KayitOl from "../screen/SignUp";
-import SifremiUnuttum from "../screen/ForgotPassword";
-import Anasayfa from "../screen/Anasayfa";
+import SignUp from "../screen/SignUp";
+import ForgotPassword from "../screen/ForgotPassword";
+import Gecis from "../screen/Gecis";
 
-import GirisYap from "../screen/Login";
+import Login from "../screen/Login";
 
 
 const Stack = createStackNavigator();
@@ -15,35 +15,35 @@ const Stack = createStackNavigator();
 const AppNavigationContainer = () => {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Anasayfa">
+      <Stack.Navigator initialRouteName="Gecis">
         
         <Stack.Screen
-          name="KayitOl"
-          component={KayitOl}
+          name="SingUp"
+          component={SignUp}
           options={{
             headerTransparent: true,
             headerTitle: "",
           }}
         />
         <Stack.Screen
-          name="GirisYap"
-          component={GirisYap}
+          name="Login"
+          component={Login}
           options={{
             headerTransparent: true,
             headerTitle: "",
           }}
         />
         <Stack.Screen
-          name="SifremiUnuttum"
-          component={SifremiUnuttum}
+          name="ForgotPassword"
+          component={ForgotPassword}
           options={{
             headerTransparent: true,
             headerTitle: "",
           }}
         />
         <Stack.Screen
-          name="Anasayfa"
-          component={Anasayfa}
+          name="Gecis"
+          component={Gecis}
           options={{
             headerTransparent: true,
             headerTitle: "",

@@ -4,9 +4,7 @@ import { createAppContainer } from "react-navigation";
 import { Entypo } from '@expo/vector-icons'; 
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { AntDesign } from '@expo/vector-icons'; 
-import { FontAwesome } from '@expo/vector-icons';
 import { FontAwesome5 } from '@expo/vector-icons'; 
-import {NavigationContainer} from '@react-navigation/native';
 
 
 import Anasayfa from "../screen/Anasayfa";
@@ -41,8 +39,8 @@ class Ingredient extends React.Component {
 //stil kısmı 
 
 const TabNavigator = createBottomTabNavigator({
-  Home: {
-    screen: Anasayfa,
+  Anasayfa: {
+    screen: Home,
     navigationOptions: {
       tabBarLabel: 'Home',color:"white",
       tabBarIcon: ({ color, size }) => (
@@ -50,8 +48,8 @@ const TabNavigator = createBottomTabNavigator({
       ),
     },
   },
-  Profile: {
-    screen: ProfilePage,
+  ProfilePage: {
+    screen: Profile,
     navigationOptions: {
       tabBarLabel: 'Profile',
           tabBarIcon: ({ color, size }) => (
@@ -60,8 +58,8 @@ const TabNavigator = createBottomTabNavigator({
     },
   },
 
-  Barkod: {
-    screen: BarkodPage,
+  BarkodPage: {
+    screen: Barkod,
     navigationOptions: {
       tabBarLabel: 'Barkod',
       tabBarIcon: ({ color, size }) => (
@@ -70,8 +68,8 @@ const TabNavigator = createBottomTabNavigator({
     },
   },
 
-  Ingredient: {
-    screen: IngredientPage,
+  IngredientPage: {
+    screen: Ingredient,
     navigationOptions: {
       tabBarLabel: 'Ingredient',
           tabBarIcon: ({ color, size }) => (
