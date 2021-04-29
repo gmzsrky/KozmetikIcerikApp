@@ -1,10 +1,7 @@
 import React, { useEffect, useState }  from 'react';
-import {View, Text, StyleSheet,Button,TextInput, ImageBackground,TouchableOpacity,Modal} from 'react-native';
+import {View, Text, StyleSheet,Button,TextInput, ImageBackground,TouchableOpacity,AsyncStorage} from 'react-native';
 //import AsyncStorage from '@react-native-community/async-storage';
 import Firebase from '../config/firebase'
-import SignUp from "./SignUp";
-import Anasayfa from "./HomePage";
-
 
 //disable yellow warnings on EXPO client!
 console.disableYellowBox = true;
@@ -14,8 +11,6 @@ const Login = props => {
   const {navigation} = props;
   const [email, setemail] = useState('');
   const [password, setpassword] = useState('');
-  const [getValue, setGetValue] = useState('');
-  const [addBarkod, setBarkod] = useState(false);
 
   handleLogin = () => {
 
@@ -49,13 +44,6 @@ return (
 
   <View style={styles.container}>
     
-    <Modal
-            animationType="slide"
-            visible={addBarkod}
-          >
-            <SignUp/>
-         </Modal>
-
   <View style={styles.inputView} >
     <TextInput style={{marginTop:"10%"}} 
       style={styles.inputText}
@@ -80,7 +68,7 @@ return (
       onPress={()=>saveValueFunction()}>
     <Text style={styles.loginText}>LOGIN</Text>
   </TouchableOpacity>
-  <TouchableOpacity style={styles.title} onPress={setBarkod(true)}>
+  <TouchableOpacity style={styles.title} onPress={() => navigation.navigate('SingUp')}>
     <Text
      style={styles.kayit}>Sign up</Text>
   </TouchableOpacity>
