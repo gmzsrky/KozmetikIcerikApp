@@ -1,52 +1,86 @@
 import * as React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { Icon } from 'react-native-elements'
-import { Entypo } from '@expo/vector-icons';
+import { createAppContainer } from "react-navigation";
+import { Entypo } from '@expo/vector-icons'; 
+import { MaterialCommunityIcons } from '@expo/vector-icons';
+import { AntDesign } from '@expo/vector-icons'; 
+import { FontAwesome } from '@expo/vector-icons';
+import { FontAwesome5 } from '@expo/vector-icons'; 
 import {NavigationContainer} from '@react-navigation/native';
 
 
-import HomePage from "../screen/HomePage";
+import Anasayfa from "../screen/Anasayfa";
 import BarkodPage from "../screen/BarkodPage";
 import ProfilePage from "../screen/ProfilePage";
 import IngredientPage from "../screen/IngredientPage";
 
-const Tab = createBottomTabNavigator();
 
-export default function TabNavigator() {
-  return (
-    <NavigationContainer>
-      <Tab.Navigator tabBarOptions={{style:{backgroundColor:"purple", },inactiveTintColor:"white", activeTintColor:"red"}} >
-        <Tab.Screen name="HomePage" component={HomePage}  options={{
-          tabBarLabel: 'Home',
-          color:"white",
-          tabBarIcon: ({ color, size }) => (
-            <Icon
-            name='home'
-            type='feather'
-            color='white'
-          />
-          ),
-        }} />
-        <Tab.Screen name="BarkodPage" component={BarkodPage} options={{
-          tabBarLabel: 'Barkod',
-          tabBarIcon: ({ color, size }) => (
-            <Entypo name="drop" size={24} color="white" />
-          ),
-        }}/>
-        <Tab.Screen name="ProfilePage" component={ProfilePage} options={{
-          tabBarLabel: 'Profile',
-          tabBarIcon: ({ color, size }) => (
-            <Entypo name="drop" size={24} color="white" />
-          ),
-        }}/>
-        <Tab.Screen name="IngredientPage" component={IngredientPage} options={{
-          tabBarLabel: 'Ingredient',
-          tabBarIcon: ({ color, size }) => (
-            <Entypo name="drop" size={24} color="white" />
-          ),
-        }}/>
-     
-      </Tab.Navigator>
-      </NavigationContainer>
-  );
+class Home extends React.Component {
+  render() {
+    return <Anasayfa navigator={navigator} />;
+  }
 }
+
+class Barkod extends React.Component {
+  render() {
+    return <BarkodPage navigator={navigator} />;
+  }
+}
+
+class Profile extends React.Component {
+  render() {
+    return <ProfilePage navigator={navigator} />;
+  }
+}
+class Ingredient extends React.Component {
+  render() {
+    return <IngredientPage navigator={navigator} />;
+  }
+}
+
+//stil kısmı 
+
+const TabNavigator = createBottomTabNavigator({
+  Home: {
+    screen: Anasayfa,
+    navigationOptions: {
+      tabBarLabel: 'Home',color:"white",
+      tabBarIcon: ({ color, size }) => (
+        <Entypo name="home" size={26}  color="black" />
+      ),
+    },
+  },
+  Profile: {
+    screen: ProfilePage,
+    navigationOptions: {
+      tabBarLabel: 'Profile',
+          tabBarIcon: ({ color, size }) => (
+            <FontAwesome5 name="user-alt" size={21} color="black" />
+      ),
+    },
+  },
+
+  Barkod: {
+    screen: BarkodPage,
+    navigationOptions: {
+      tabBarLabel: 'Barkod',
+      tabBarIcon: ({ color, size }) => (
+        <MaterialCommunityIcons name="barcode-scan" size={24} color="black" />
+      ),
+    },
+  },
+
+  Ingredient: {
+    screen: IngredientPage,
+    navigationOptions: {
+      tabBarLabel: 'Ingredient',
+          tabBarIcon: ({ color, size }) => (
+            <AntDesign name="warning" size={24} color="black" />
+      ),
+    },
+  },
+
+
+
+});
+export default createAppContainer(TabNavigator);

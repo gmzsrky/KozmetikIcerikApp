@@ -1,11 +1,12 @@
 import React from 'react';
 import {SafeAreaView} from 'react-native';
-import TabNavigation from './navigation/TabNavigator';
+import AppNavigation from './navigation/AppNavigation';
+
 
 
 const App = () => {
   return (
-    <TabNavigation style={flex = 1 }/>
+    <AppNavigation style={flex = 1 }/>
   );
 };
 export default App;
