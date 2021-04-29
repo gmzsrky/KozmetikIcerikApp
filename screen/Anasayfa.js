@@ -13,7 +13,7 @@ import Firebase from '../config/firebase'
 //disable yellow warnings on EXPO client!
 console.disableYellowBox = true;
 
-const HomePage = () => { 
+const Anasayfa = () => { 
   const [search, setsearch] = useState("");
   updateSearch = (search) => {
     setsearch( search );
@@ -168,4 +168,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default HomePage; 
+export default Anasayfa; 
