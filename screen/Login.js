@@ -3,7 +3,7 @@ import {View, Text, StyleSheet,Button,TextInput, ImageBackground,TouchableOpacit
 //import AsyncStorage from '@react-native-community/async-storage';
 import Firebase from '../config/firebase'
 import SignUp from "./SignUp";
-import Anasayfa from "./Anasayfa";
+import Anasayfa from "./HomePage";
 
 
 //disable yellow warnings on EXPO client!

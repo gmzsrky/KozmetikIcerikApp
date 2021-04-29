@@ -15,7 +15,7 @@ const Stack = createStackNavigator();
 const AppNavigationContainer = () => {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Gecis">
+      <Stack.Navigator initialRouteName="Login">
         
         <Stack.Screen
           name="SingUp"
