@@ -29,10 +29,10 @@ const addBarkod = ()=>{
   }
  
   const inputHandler = (text, key,dene)=>{
-   
-   
-
-   
+    const _inputs = [...inputs];
+    _inputs[key].value = text;
+    _inputs[key].key   = key;
+    setInputs(_inputs);
     //console.log(inputs)
     console.log(_inputs[key].value.getItem)
   }
@@ -40,12 +40,8 @@ const addBarkod = ()=>{
   const addFirestore=(text,key,dene)=>{
     {inputs.map((item) => Firebase.firestore().collection("Deneme").doc(item.value)
     .onSnapshot((doc) => {
-      const _inputs = [...inputs];
-      _inputs[key].value = text;
-      _inputs[key].key   = key;
-      setInputs(_inputs);
-      console.log("Current data: ", doc.dene);
-    _inputs[key].dene   = doc.dene;
+        console.log("Current data: ", doc.data());
+    _inputs[key].dene   = dene;
     })
     )}
     
