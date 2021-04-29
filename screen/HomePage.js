@@ -46,7 +46,7 @@ const HomePage = () => {
       
       <TouchableOpacity style={styles.searchBar}>
       <SearchBar
-        platform="ios"  // ios , default
+        platform="ios"  // ios , default, android
         placeholder="Ürün ismi giriniz.."
         onChangeText={updateSearch}
         value={search}

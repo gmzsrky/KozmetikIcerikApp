@@ -6,7 +6,7 @@ import { AntDesign } from '@expo/vector-icons';
 const addBarkod = ()=>{
 
   const [getValue, setGetValue] = useState('');
-  const [inputs, setInputs] = useState([{key: '', value: ''}]);
+  const [inputs, setInputs] = useState([{key: '', value: '',dene:'',akne:'',irite:'',fonksiyon:''}]);
 
   useEffect(() => {
     //function to get the value from AsyncStorage
@@ -19,7 +19,7 @@ const addBarkod = ()=>{
   })
   const addHandler = ()=>{
     const _inputs = [...inputs];
-    _inputs.push({key: '', value: ''});
+    _inputs.push({key: '', value: '',dene:'',akne:'',irite:'',fonksiyon:''});
     setInputs(_inputs);
   }
   
@@ -27,22 +27,31 @@ const addBarkod = ()=>{
     const _inputs = inputs.filter((input,index) => index != key);
     setInputs(_inputs);
   }
-
-  const inputHandler = (text, key)=>{
-    const _inputs = [...inputs];
-    _inputs[key].value = text;
-    _inputs[key].key   = key;
-    setInputs(_inputs);
-    console.log(inputs)
-  }
-  const addFirestore=(text,key)=>{
+ 
+  const inputHandler = (text, key,dene)=>{
    
-    var washingtonRef = Firebase.firestore().collection("Bakod").doc(getValue);
+   
 
-    // Atomically add a new region to the "regions" array field.
-    washingtonRef.set({
-        icerik: Firebase.firestore.FieldValue.arrayUnion("xx")
-    });
+   
+    //console.log(inputs)
+    console.log(_inputs[key].value.getItem)
+  }
+  
+  const addFirestore=(text,key,dene)=>{
+    {inputs.map((item) => Firebase.firestore().collection("Deneme").doc(item.value)
+    .onSnapshot((doc) => {
+      const _inputs = [...inputs];
+      _inputs[key].value = text;
+      _inputs[key].key   = key;
+      setInputs(_inputs);
+      console.log("Current data: ", doc.dene);
+    _inputs[key].dene   = doc.dene;
+    })
+    )}
+    
+    var washingtonRef = Firebase.firestore().collection("Bakod").doc(getValue).set( { İçerik: inputs})
+    console.log('text',text)
+    
   }
  
 //ekleme çıkartma işlemleri 

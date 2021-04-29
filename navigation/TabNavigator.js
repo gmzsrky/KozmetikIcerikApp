@@ -1,7 +1,9 @@
 import * as React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { Icon } from 'react-native-elements'
 import { Entypo } from '@expo/vector-icons';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
+import { AntDesign } from '@expo/vector-icons'; 
+import { FontAwesome5 } from '@expo/vector-icons'; 
 import {NavigationContainer} from '@react-navigation/native';
 
 
@@ -14,34 +16,29 @@ const Tab = createBottomTabNavigator();
 
 export default function TabNavigator() {
   return (
-      <Tab.Navigator tabBarOptions={{style:{backgroundColor:"purple", },inactiveTintColor:"white", activeTintColor:"red"}} >
+      <Tab.Navigator tabBarOptions={{style:{backgroundColor:"white", },inactiveTintColor:"black", activeTintColor:"black"}} >
         <Tab.Screen name="HomePage" component={HomePage}  options={{
-          tabBarLabel: 'Home',
-          color:"white",
+          tabBarLabel: 'Home',color:"white",
           tabBarIcon: ({ color, size }) => (
-            <Icon
-            name='home'
-            type='feather'
-            color='white'
-          />
+            <Entypo name="home" size={26}  color="black" />
           ),
         }} />
         <Tab.Screen name="BarkodPage" component={BarkodPage} options={{
           tabBarLabel: 'Barkod',
           tabBarIcon: ({ color, size }) => (
-            <Entypo name="drop" size={24} color="white" />
+            <MaterialCommunityIcons name="barcode-scan" size={24} color="black" />
           ),
         }}/>
         <Tab.Screen name="ProfilePage" component={ProfilePage} options={{
           tabBarLabel: 'Profile',
           tabBarIcon: ({ color, size }) => (
-            <Entypo name="drop" size={24} color="white" />
+            <FontAwesome5 name="user-alt" size={21} color="black" />
           ),
         }}/>
         <Tab.Screen name="IngredientPage" component={IngredientPage} options={{
-          tabBarLabel: 'Ingredient',
-          tabBarIcon: ({ color, size }) => (
-            <Entypo name="drop" size={24} color="white" />
+            tabBarLabel: 'Ingredient',
+            tabBarIcon: ({ color, size }) => (
+              <AntDesign name="warning" size={24} color="black" />
           ),
         }}/>
      

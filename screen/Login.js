@@ -72,6 +72,10 @@ return (
     <Text
      style={styles.kayit}>Sign up</Text>
   </TouchableOpacity>
+  <TouchableOpacity style={styles.title} onPress={() => navigation.navigate('Gecis')}>
+    <Text
+     style={styles.kayit}>Kayıt olmadan devam et</Text>
+  </TouchableOpacity>
 </View>
 );
 }
