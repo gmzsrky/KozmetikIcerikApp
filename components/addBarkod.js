@@ -2,11 +2,11 @@ import React, { useEffect, useState } from 'react'
 import { View, Text, Button, TextInput, TouchableOpacity, StyleSheet, ScrollView,AsyncStorage } from 'react-native'
 import Firebase from '../config/firebase';
 import { AntDesign } from '@expo/vector-icons';
-
 const addBarkod = ()=>{
 
   const [getValue, setGetValue] = useState('');
   const [inputs, setInputs] = useState([{key: '', value: ''}]);
+
 
   useEffect(() => {
     //function to get the value from AsyncStorage
@@ -33,17 +33,17 @@ const addBarkod = ()=>{
     _inputs[key].value = text;
     _inputs[key].key   = key;
     setInputs(_inputs);
-    console.log(inputs)
+    console.log(inputs);
   }
   const addFirestore=(text,key)=>{
-   
-    var washingtonRef = Firebase.firestore().collection("Bakod").doc(getValue);
-
+    var washingtonRef = Firebase.firestore().collection("Bakod").doc(getValue).set( { İçerik: inputs})
     // Atomically add a new region to the "regions" array field.
-    washingtonRef.set({
-        icerik: Firebase.firestore.FieldValue.arrayUnion("xx")
-    });
+  //  washingtonRef.set({
+     //   icerik: Firebase.firestore.FieldValue.arrayUnion(inputs)
+    //});
+   
   }
+
  
 //ekleme çıkartma işlemleri 
   return (
