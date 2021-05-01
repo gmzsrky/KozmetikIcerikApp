@@ -1,7 +1,10 @@
 import React, { useEffect, useState }  from 'react';
-import {View, Text, StyleSheet,Button,TextInput, ImageBackground,TouchableOpacity,AsyncStorage} from 'react-native';
+import {View, Text, StyleSheet,TextInput, ImageBackground,TouchableOpacity,AsyncStorage} from 'react-native';
 //import AsyncStorage from '@react-native-community/async-storage';
 import Firebase from '../config/firebase'
+import { Button } from 'react-native-elements';
+import { inlineStyles } from 'react-native-svg';
+import { block } from 'react-native-reanimated';
 
 //disable yellow warnings on EXPO client!
 console.disableYellowBox = true;
@@ -61,21 +64,30 @@ return (
       onChangeText={password => setpassword(password)}
         defaultValue={password}/>
   </View>
-  <TouchableOpacity style={styles.title} onPress={() => navigation.navigate('ForgotPassword')}>
+  
+  
+
+  <View style={styles.loginBtn}>
+  <TouchableOpacity  /*style={styles.loginBtn} */onPress={()=>saveValueFunction()}>
+        
+        <Text style={styles.loginText}>LOGİN</Text>
+  </TouchableOpacity>
+  
+  <TouchableOpacity  onPress={() => navigation.navigate('Gecis')}>
+    <Text
+     style={styles.loginText}>Kayıt olmadan devam et</Text>
+  </TouchableOpacity>
+  </View>
+
+  <View style={styles.title}  >
+  <TouchableOpacity  onPress={() => navigation.navigate('ForgotPassword')}>
     <Text style={styles.forgot}>Forgot Password?</Text>
   </TouchableOpacity>
-  <TouchableOpacity style={styles.loginBtn} 
-      onPress={()=>saveValueFunction()}>
-    <Text style={styles.loginText}>LOGIN</Text>
-  </TouchableOpacity>
-  <TouchableOpacity style={styles.title} onPress={() => navigation.navigate('SingUp')}>
+  <TouchableOpacity onPress={() => navigation.navigate('SingUp')}>
     <Text
-     style={styles.kayit}>Sign up</Text>
+     style={styles.forgot}>Sign up</Text>
   </TouchableOpacity>
-  <TouchableOpacity style={styles.title} onPress={() => navigation.navigate('Gecis')}>
-    <Text
-     style={styles.kayit}>Kayıt olmadan devam et</Text>
-  </TouchableOpacity>
+  </View>
 </View>
 );
 }
@@ -98,17 +110,32 @@ const styles = StyleSheet.create({
   forgot:{
     color:"#634d4d",
     fontSize:11,
-    textAlign: "center",
     fontWeight:"700",
     borderBottomColor:"#634d4d",
-    borderBottomWidth:3,
+    //borderBottomWidth:3,
     paddingBottom:"2%",
+     justifyContent:'space-between',
+    flexDirection:"row",
   },
-  title:{
-    alignItems:"center",
-    borderBottomWidth:0,
-    borderBottomColor:"white"
-  },
+    title:{
+    flexDirection:'row',
+    justifyContent:'space-between',
+    marginRight:"7%",
+    marginLeft:"4%",
+    }, 
+
+    title1:{
+     
+      width:"90%",
+      backgroundColor:"pink",
+      borderColor:"#191834",
+      borderRadius:20,
+      height:"12%",
+      alignSelf:"center",
+      marginTop:"1%",
+      marginBottom:"5%",
+      
+      },   
   inputView:{
     width:"80%",
     backgroundColor:"#adcceb",
@@ -123,33 +150,37 @@ const styles = StyleSheet.create({
     height:50,
     color:"white"
   },
-  loginBtn:{
-    width:"90%",
-    backgroundColor:"#d77a5b",
-    borderRadius:20,
-    height:"14%",
-    alignSelf: 'center',
-    
 
-    marginTop:"10%",
-    marginBottom:"5%",
-  },
   loginText:{
     marginTop: 15,
     color:"white",
-    textAlign: "center",
-    alignItems:'center',
-    fontSize:25,
+    alignItems:"center",
+    textAlign:'center',
+    fontSize:20,
     fontWeight:"bold",
+
     
+  },
+  loginBtn:{
+    width:"90%",
+    backgroundColor:"pink",
+    borderColor:"#191834",
+    borderRadius:20,
+    height:"12%",
+    alignSelf:"center",
+    marginTop:"10%",
+    marginBottom:"5%",
+    flexDirection:'row',
+    justifyContent:'space-between',
   },
   kayit:{
     marginTop: 15,
     color:"#634d4d",
-    textAlign: "center",
+    justifyContent:'space-between',
+    flexDirection:"row",
     fontWeight:"bold",
     borderBottomColor:"#634d4d",
-    borderBottomWidth:3,
+    //borderBottomWidth:3,
     paddingBottom:"2%",
     fontSize:20
   },
