@@ -67,13 +67,13 @@ return (
   
   
 
-  <View style={styles.loginBtn}>
-  <TouchableOpacity  /*style={styles.loginBtn} */onPress={()=>saveValueFunction()}>
+  <View style={styles.butonlar}>
+  <TouchableOpacity  style={styles.loginBtn} onPress={()=>saveValueFunction()}>
         
         <Text style={styles.loginText}>LOGİN</Text>
   </TouchableOpacity>
   
-  <TouchableOpacity  onPress={() => navigation.navigate('Gecis')}>
+  <TouchableOpacity style={styles.loginBtn} onPress={() => navigation.navigate('Gecis')}>
     <Text
      style={styles.loginText}>Kayıt olmadan devam et</Text>
   </TouchableOpacity>
@@ -123,19 +123,7 @@ const styles = StyleSheet.create({
     marginRight:"7%",
     marginLeft:"4%",
     }, 
-
-    title1:{
-     
-      width:"90%",
-      backgroundColor:"pink",
-      borderColor:"#191834",
-      borderRadius:20,
-      height:"12%",
-      alignSelf:"center",
-      marginTop:"1%",
-      marginBottom:"5%",
-      
-      },   
+  
   inputView:{
     width:"80%",
     backgroundColor:"#adcceb",
@@ -162,27 +150,27 @@ const styles = StyleSheet.create({
     
   },
   loginBtn:{
-    width:"90%",
+    maxWidth:"100%",
     backgroundColor:"pink",
     borderColor:"#191834",
-    borderRadius:20,
-    height:"12%",
+    borderRadius:14,
+    height:"60%",
     alignSelf:"center",
     marginTop:"10%",
     marginBottom:"5%",
+    marginRight:'5%',
+    paddingLeft:"5%",
+    paddingRight:'5%',
+    
+    
+  },
+  butonlar:{
     flexDirection:'row',
     justifyContent:'space-between',
-  },
-  kayit:{
-    marginTop: 15,
-    color:"#634d4d",
-    justifyContent:'space-between',
-    flexDirection:"row",
-    fontWeight:"bold",
-    borderBottomColor:"#634d4d",
-    //borderBottomWidth:3,
-    paddingBottom:"2%",
-    fontSize:20
+    marginRight:"10%",
+    marginLeft:"4%",
+    
+  
   },
   text:{
     height:'50%',

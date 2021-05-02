@@ -42,6 +42,9 @@ const BarkodPage = () =>  {
               { cancelable: false }
             )
           }
+          else{
+            saveValueFunction();
+          }
         })
       })
 

@@ -1,13 +1,15 @@
 import React, { useEffect, useState } from 'react'
-import { View, Text, Button, TextInput, TouchableOpacity, StyleSheet, ScrollView,AsyncStorage } from 'react-native'
+import { View, Text, Button, TextInput, TouchableOpacity, StyleSheet, ScrollView,AsyncStorage,Modal,FlatList } from 'react-native'
 import Firebase from '../config/firebase';
 import { AntDesign } from '@expo/vector-icons';
-
+import Product from "../components/product";
 const addBarkod = ()=>{
 
+  const [productvisible, setProductVisible] = useState(false);
   const [getValue, setGetValue] = useState('');
-  const [inputs, setInputs] = useState([{key: '', value: '',dene:'',akne:'',irite:'',fonksiyon:''}]);
-
+  const [inputs, setInputs] = useState([{key: '', value: ''}]);
+  const [x,setx]=useState("");
+  const [y,sety]=useState("");
   useEffect(() => {
     //function to get the value from AsyncStorage
     AsyncStorage.getItem('key').then(
@@ -19,7 +21,7 @@ const addBarkod = ()=>{
   })
   const addHandler = ()=>{
     const _inputs = [...inputs];
-    _inputs.push({key: '', value: '',dene:'',akne:'',irite:'',fonksiyon:''});
+    _inputs.push({key: '', value: ''});
     setInputs(_inputs);
   }
   
@@ -28,31 +30,64 @@ const addBarkod = ()=>{
     setInputs(_inputs);
   }
  
-  const inputHandler = (text, key,dene)=>{
+  const inputHandler = (text, key)=>{
     const _inputs = [...inputs];
     _inputs[key].value = text;
     _inputs[key].key   = key;
     setInputs(_inputs);
     //console.log(inputs)
-    console.log(_inputs[key].value.getItem)
   }
-  
-  const addFirestore=(text,key,dene)=>{
-    {inputs.map((item) => Firebase.firestore().collection("Deneme").doc(item.value)
-    .onSnapshot((doc) => {
-        console.log("Current data: ", doc.data());
-    _inputs[key].dene   = dene;
-    })
-    )}
-    
-    var washingtonRef = Firebase.firestore().collection("Bakod").doc(getValue).set( { İçerik: inputs})
-    console.log('text',text)
-    
+  const addFirestore=(text,key)=>{
+
+    const ref =  Firebase.firestore().collection('Bakod');
+    const getDoc = ref.doc(getValue)
+    .onSnapshot(doc => {
+      const data = doc.data().icerik;
+
+      {data.map((item) => Firebase.firestore().collection("Deneme").where("name", "==", item.value)
+      .onSnapshot(querySnapshot => {
+        const food = [];
+        querySnapshot.forEach(documentSnapshot => {
+          food.push({
+            ...documentSnapshot.data(),
+            key: documentSnapshot.id
+          });
+        });
+        
+        console.log("aaaaa",food)
+        setx(food);
+      }));
+      
+      }
+    });
+
+    var washingtonRef = Firebase.firestore().collection("Bakod").doc(getValue).set( { icerik: inputs}) 
+    .then(() => setProductVisible(true))
+    .catch(error => alert(error))
   }
+
+        renderList = (list) => {
+          return  <Product list={list}/>
+        };
+
  
 //ekleme çıkartma işlemleri 
   return (
     <View style={styles.container}>
+
+        <Modal
+            animationType="slide"
+            visible={productvisible}
+          >
+           <FlatList
+                data={x}
+                horizontal={false}
+                showsHorizontalScrollIndicator={false}
+                renderItem={({ item }) => renderList(item)}
+                contentContainerStyle={{ flex: 1 }}
+            />
+          </Modal>
+
       <Text style={{fontWeight:'bold',fontSize:20}}>{getValue}</Text>
       <ScrollView style={styles.inputsContainer}>
       {inputs.map((input, key)=>(
@@ -71,9 +106,6 @@ const addBarkod = ()=>{
         </View>
       ))}
       </ScrollView>
-      
-      
-      
       <Button style={{backgroundColor:'#36405f'}} title="GÖNDER" onPress={addFirestore} />
     </View>
   );

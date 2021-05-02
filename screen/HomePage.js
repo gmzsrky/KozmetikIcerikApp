@@ -40,6 +40,7 @@ const HomePage = () => {
 
             setx(privateMessages)
           }
+          
         ); 
   return (
   <ScrollView style={styles.container}>
