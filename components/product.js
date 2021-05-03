@@ -15,10 +15,15 @@ const product = ({ list }) => {
       >
         <View style={{flexDirection:"row", backgroundColor:"#adcceb"}}>
          
-          <Text style={styles.listTitle} numberOfLines={2}>
-            Kalori:{list.dene}
+          <Text style={styles.listTitle} >
+            Name:{list.name}
           </Text>
-
+          <Text style={styles.listTitle} >
+            Dene:{list.dene}
+          </Text>
+          <Text style={styles.listTitle}>
+            Fonksiyon:{list.fonksiyon}
+          </Text>
         </View>  
       </View>
     </View>

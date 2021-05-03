@@ -8,7 +8,7 @@ const addBarkod = ()=>{
   const [productvisible, setProductVisible] = useState(false);
   const [getValue, setGetValue] = useState('');
   const [inputs, setInputs] = useState([{key: '', value: ''}]);
-  const [x,setx]=useState("");
+  const [x,setx]=useState([]);
   const [y,sety]=useState("");
   useEffect(() => {
     //function to get the value from AsyncStorage
@@ -39,6 +39,7 @@ const addBarkod = ()=>{
   }
   const addFirestore=(text,key)=>{
 
+    const food=[...x];
     const ref =  Firebase.firestore().collection('Bakod');
     const getDoc = ref.doc(getValue)
     .onSnapshot(doc => {
@@ -46,20 +47,18 @@ const addBarkod = ()=>{
 
       {data.map((item) => Firebase.firestore().collection("Deneme").where("name", "==", item.value)
       .onSnapshot(querySnapshot => {
-        const food = [];
         querySnapshot.forEach(documentSnapshot => {
-          food.push({
-            ...documentSnapshot.data(),
-            key: documentSnapshot.id
+         food.push({
+           ...documentSnapshot.data()
           });
         });
-        
-        console.log("aaaaa",food)
-        setx(food);
       }));
       
       }
     });
+
+    setx(food);
+    console.log("aaaaa",food)
 
     var washingtonRef = Firebase.firestore().collection("Bakod").doc(getValue).set( { icerik: inputs}) 
     .then(() => setProductVisible(true))
