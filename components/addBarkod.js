@@ -9,7 +9,6 @@ const addBarkod = ()=>{
   const [getValue, setGetValue] = useState('');
   const [inputs, setInputs] = useState([{key: '', value: ''}]);
   const [x,setx]=useState([]);
-  const [y,sety]=useState("");
   useEffect(() => {
     //function to get the value from AsyncStorage
     AsyncStorage.getItem('key').then(
@@ -69,7 +68,9 @@ const addBarkod = ()=>{
           return  <Product list={list}/>
         };
 
- 
+  closeModal = () => {
+    setProductVisible(false);
+  };
 //ekleme çıkartma işlemleri 
   return (
     <View style={styles.container}>
@@ -77,6 +78,7 @@ const addBarkod = ()=>{
         <Modal
             animationType="slide"
             visible={productvisible}
+            onRequestClose={()=>closeModal()}
           >
            <FlatList
                 data={x}
@@ -86,7 +88,12 @@ const addBarkod = ()=>{
                 contentContainerStyle={{ flex: 1 }}
             />
           </Modal>
-
+          <Pressable
+              style={[styles.button, styles.buttonClose]}
+              onPress={() =>closeModal()}
+            >
+              <Text style={styles.textStyle}>Hide Modal</Text>
+            </Pressable>
       <Text style={{fontWeight:'bold',fontSize:20}}>{getValue}</Text>
       <ScrollView style={styles.inputsContainer}>
       {inputs.map((input, key)=>(

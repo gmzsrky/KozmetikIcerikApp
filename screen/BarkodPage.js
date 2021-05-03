@@ -1,14 +1,16 @@
 import React, { useState, useEffect } from 'react';
-import { Text, View, StyleSheet, Button,Alert,Modal,AsyncStorage  } from 'react-native';
+import { Text, View, StyleSheet, Button,Alert,Modal,AsyncStorage,FlatList  } from 'react-native';
 import { BarCodeScanner } from 'expo-barcode-scanner';
 import Firebase from '../config/firebase'
 import AddBarkod from "../components/addBarkod";
-
+import Product from "../components/product";
 const BarkodPage = () =>  {
   const [hasPermission, setHasPermission] = useState(null);
   const [scanned, setScanned] = useState(false);
   const [dataa, setdataa] = useState("");
   const [addBarkod, setBarkod] = useState(false);
+  const [productvisible, setProductVisible] = useState(false);
+  const [x,setx]=useState([]);
 
   useEffect(() => {
     (async () => {
@@ -25,6 +27,31 @@ const BarkodPage = () =>  {
       setdataa("")
       setBarkod(true);
     } 
+
+    const productPage=()=>{
+      
+    const food=[...x];
+    const ref =  Firebase.firestore().collection('Bakod');
+    const getDoc = ref.doc(data)
+    .onSnapshot(doc => {
+      const veri = doc.data().icerik;
+      {veri.map((item) => Firebase.firestore().collection("Deneme").where("name", "==", item.value)
+      .onSnapshot(querySnapshot => {
+        querySnapshot.forEach(documentSnapshot => {
+         food.push({
+           ...documentSnapshot.data()
+          });
+        });
+      }));
+      
+      }
+    });
+
+    setx(food);
+    console.log("aaaaa",food)
+    setProductVisible(true);
+    }
+
     var sfDocRef = Firebase.firestore().collection("Bakod").doc(data)
     Firebase.firestore().runTransaction(function(transaction) {
       return transaction.get(sfDocRef).then(function(sfDoc) {
@@ -43,12 +70,17 @@ const BarkodPage = () =>  {
             )
           }
           else{
-            saveValueFunction();
+            productPage();
           }
         })
       })
 
   // alert(`Bar code with type ${type} and data ${data} has been scanned!`);
+  };
+      
+  closeModal = () => {
+    setProductVisible(false);
+    setBarkod(false);
   };
 
   if (hasPermission === null) {
@@ -57,6 +89,9 @@ const BarkodPage = () =>  {
   if (hasPermission === false) {
     return <Text>No access to camera</Text>;
   }
+  renderList = (list) => {
+    return  <Product list={list}/>
+  };
 
   return (
     <View style={styles.container}>
@@ -64,9 +99,23 @@ const BarkodPage = () =>  {
         <Modal
             animationType="slide"
             visible={addBarkod}
+            onRequestClose={()=>closeModal()}
           >
-            <AddBarkod/>
+            <AddBarkod />
          </Modal>
+         <Modal
+            animationType="slide"
+            visible={productvisible}
+             onRequestClose={()=>closeModal()}
+          >
+           <FlatList
+                data={x}
+                horizontal={false}
+                showsHorizontalScrollIndicator={false}
+                renderItem={({ item }) => renderList(item)}
+                contentContainerStyle={{ flex: 1 }}
+            />
+          </Modal>
 
 
 

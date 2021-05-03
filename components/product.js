@@ -1,15 +1,21 @@
 import React, { useState } from "react";
-import { View, Text, StyleSheet, TouchableOpacity, Modal,Image,Button} from "react-native";
-
+import { View, Text, StyleSheet, Pressable,} from "react-native";
+import { AntDesign } from "../node_modules/@expo/vector-icons";
 
 //disable yellow warnings on EXPO client!
 console.disableYellowBox = true;
 
 const product = ({ list }) => {
-  
+
   return (
    
     <View>
+          <Pressable
+              style={[styles.button, styles.buttonClose]}
+              onPress={() =>closeModal()}
+            >
+              <Text style={styles.textStyle}>Hide Modal</Text>
+            </Pressable>
       <View
         style={[styles.listContainer]}
       >
@@ -77,7 +83,23 @@ const styles = StyleSheet.create({
     alignSelf: "center",
     width: "45%",
     
-  }
+  },
+  button: {
+    borderRadius: 20,
+    padding: 10,
+    elevation: 2
+  },
+  buttonOpen: {
+    backgroundColor: "#F194FF",
+  },
+  buttonClose: {
+    backgroundColor: "#2196F3",
+  },
+  textStyle: {
+    color: "white",
+    fontWeight: "bold",
+    textAlign: "center"
+  },
 });
 
 export default product;
