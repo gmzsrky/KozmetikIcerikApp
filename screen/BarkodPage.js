@@ -101,7 +101,12 @@ const BarkodPage = () =>  {
             visible={addBarkod}
             onRequestClose={()=>closeModal()}
           >
-*********************************************************
+            <Pressable
+              style={[styles.button, styles.buttonClose]}
+              onPress={() =>closeModal()}
+            >
+              <Text style={styles.textStyle}>Hide Modal</Text>
+            </Pressable>
             <AddBarkod/>
           
             
@@ -111,6 +116,12 @@ const BarkodPage = () =>  {
             visible={productvisible}
              onRequestClose={()=>closeModal()}
           >
+           <Pressable
+              style={[styles.button, styles.buttonClose]}
+              onPress={() =>closeModal()}
+            >
+              <Text style={styles.textStyle}>Hide Modal</Text>
+            </Pressable>
            <FlatList
                 data={x}
                 horizontal={false}
@@ -136,6 +147,22 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'column',
     justifyContent: 'center',
+  },
+  button: {
+    borderRadius: 20,
+    padding: 10,
+    elevation: 2
+  },
+  buttonOpen: {
+    backgroundColor: "#F194FF",
+  },
+  buttonClose: {
+    backgroundColor: "#2196F3",
+  },
+  textStyle: {
+    color: "white",
+    fontWeight: "bold",
+    textAlign: "center"
   },
 });
 

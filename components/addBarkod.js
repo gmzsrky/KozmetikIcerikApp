@@ -1,9 +1,12 @@
 import React, { useEffect, useState } from 'react'
-import { View, Text, Button, TextInput, TouchableOpacity, StyleSheet, ScrollView,AsyncStorage,Modal,FlatList } from 'react-native'
+import { View, Text, Button, TextInput, TouchableOpacity, StyleSheet, ScrollView,AsyncStorage,Modal,FlatList,Pressable } from 'react-native';
 import Firebase from '../config/firebase';
 import { AntDesign } from '@expo/vector-icons';
+import SelectPicker from 'react-native-form-select-picker';
 import Product from "../components/product";
 
+
+const options = ["Apple", "Banana", "Orange"];
 //import PickerExample from './PickerExample.js' /*açılır kapanır şey  */
 const addBarkod = ()=>{
 
@@ -11,6 +14,8 @@ const addBarkod = ()=>{
   const [getValue, setGetValue] = useState('');
   const [inputs, setInputs] = useState([{key: '', value: ''}]);
   const [x,setx]=useState([]);
+  const [urunAdi, onChangeText] = useState("");
+  const [selected, setSelected] = useState("");
   useEffect(() => {
     //function to get the value from AsyncStorage
     AsyncStorage.getItem('key').then(
@@ -82,6 +87,12 @@ const addBarkod = ()=>{
             visible={productvisible}
             onRequestClose={()=>closeModal()}
           >
+            <Pressable
+              style={[styles.button, styles.buttonClose]}
+              onPress={() =>closeModal()}
+            >
+              <Text style={styles.textStyle}>Hide Modal</Text>
+            </Pressable>
            <FlatList
                 data={x}
                 horizontal={false}
@@ -90,12 +101,29 @@ const addBarkod = ()=>{
                 contentContainerStyle={{ flex: 1 }}
             />
           </Modal>
-          <Pressable
-              style={[styles.button, styles.buttonClose]}
-              onPress={() =>closeModal()}
+            <TextInput
+              style={styles.input}
+              onChangeText={onChangeText}
+              value={urunAdi}
+              placeholder="Ürün Adını Giriniz..."
+            />
+            <SelectPicker
+            placeholder={"Seçim yapınız"}
+            onValueChange={(value) => {
+              // Do anything you want with the value. 
+              // For example, save in state.
+              setSelected(value);
+            }}
+            selected={selected}
             >
-              <Text style={styles.textStyle}>Hide Modal</Text>
-            </Pressable>
+
+            {Object.values(options).map((val, index) => (
+              <SelectPicker.Item label={val} value={val} key={index} />
+            ))}
+
+            </SelectPicker>        
+
+
       <Text style={{fontWeight:'bold',fontSize:20}}>{getValue}</Text>
       <ScrollView style={styles.inputsContainer}>
       {inputs.map((input, key)=>(
@@ -135,6 +163,22 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     borderBottomWidth: 1,
     borderBottomColor: "lightgray"
+  },
+   button: {
+    borderRadius: 20,
+    padding: 10,
+    elevation: 2
+  },
+  buttonOpen: {
+    backgroundColor: "#F194FF",
+  },
+  buttonClose: {
+    backgroundColor: "#2196F3",
+  },
+  textStyle: {
+    color: "white",
+    fontWeight: "bold",
+    textAlign: "center"
   },
  
 })

@@ -10,12 +10,7 @@ const product = ({ list }) => {
   return (
    
     <View>
-          <Pressable
-              style={[styles.button, styles.buttonClose]}
-              onPress={() =>closeModal()}
-            >
-              <Text style={styles.textStyle}>Hide Modal</Text>
-            </Pressable>
+  
       <View
         style={[styles.listContainer]}
       >
