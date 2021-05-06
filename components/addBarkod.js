@@ -3,6 +3,8 @@ import { View, Text, Button, TextInput, TouchableOpacity, StyleSheet, ScrollView
 import Firebase from '../config/firebase';
 import { AntDesign } from '@expo/vector-icons';
 import Product from "../components/product";
+
+//import PickerExample from './PickerExample.js' /*açılır kapanır şey  */
 const addBarkod = ()=>{
 
   const [productvisible, setProductVisible] = useState(false);

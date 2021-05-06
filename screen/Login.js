@@ -6,8 +6,12 @@ import { Button } from 'react-native-elements';
 import { inlineStyles } from 'react-native-svg';
 import { block } from 'react-native-reanimated';
 
+
+
 //disable yellow warnings on EXPO client!
 console.disableYellowBox = true;
+
+
 
 const Login = props => {
 
@@ -22,6 +26,8 @@ const Login = props => {
         .then(() => navigation.navigate('Gecis'))
         .catch(error => alert(error))
 }
+
+  
 const saveValueFunction = () => {
   //function to save the value in AsyncStorage
   if (email) {
@@ -43,10 +49,8 @@ const saveValueFunction = () => {
 };
 
 return (
-
-
-  <View style={styles.container}>
-    
+<ImageBackground style={{flex: 1, opacity: 0.9,}}  source={require('../assets/log.jpg')}>
+  <View style={styles.container}> 
   <View style={styles.inputView} >
     <TextInput style={{marginTop:"10%"}} 
       style={styles.inputText}
@@ -89,14 +93,18 @@ return (
   </TouchableOpacity>
   </View>
 </View>
+</ImageBackground>
 );
 }
 const styles = StyleSheet.create({
   container:{
-    marginTop:"90%",
     flex: 1, 
+    marginTop:"90%",
+  
+    
   },
-  logo:{
+
+ /* logo:{
     marginTop: "45%",
     fontWeight:"bold",
     fontSize:50,
@@ -106,14 +114,16 @@ const styles = StyleSheet.create({
     borderBottomColor:"#2f5a93",
     borderBottomWidth:5,
     paddingBottom:"2%",
-  },
+  }, */
   forgot:{
-    color:"#634d4d",
+    color:"#1d2334",
+    backgroundColor:"#ffff",
+    borderRadius:1,
     fontSize:11,
     fontWeight:"700",
     borderBottomColor:"#634d4d",
-    //borderBottomWidth:3,
-    paddingBottom:"2%",
+    borderBottomWidth:1,
+   //paddingBottom:"2%",
      justifyContent:'space-between',
     flexDirection:"row",
   },
@@ -125,9 +135,9 @@ const styles = StyleSheet.create({
     }, 
   
   inputView:{
-    width:"80%",
-    backgroundColor:"#adcceb",
-    borderRadius:25,
+    width:"90%",
+    backgroundColor:"#80A1BB",
+    borderRadius:15,
     height: "8%",
     marginBottom:"5%",
     justifyContent:"center",
@@ -141,7 +151,7 @@ const styles = StyleSheet.create({
 
   loginText:{
     marginTop: 15,
-    color:"white",
+    color:"#80A1BB",
     alignItems:"center",
     textAlign:'center',
     fontSize:20,
@@ -151,7 +161,7 @@ const styles = StyleSheet.create({
   },
   loginBtn:{
     maxWidth:"100%",
-    backgroundColor:"pink",
+    backgroundColor:"#FFFFFF",
     borderColor:"#191834",
     borderRadius:14,
     height:"60%",
@@ -179,23 +189,6 @@ const styles = StyleSheet.create({
       textAlign: "center",
       fontStyle: 'italic',
       fontFamily:"tahoma",
-  },
-  buttonContainer:{
-    justifyContent:'space-between',
-    width:'50%',
-    height:'25%',
-  },
-  kayitText:{
-   
-    backgroundColor: "#FFCC80",
-    borderWidth: 1,
-    borderRadius: 20,
-    justifyContent:"space-around",
-    fontSize: 20,
-  },
-  textButton:{
-    fontSize:20,
-    textAlign: "center",
   },
 
 
