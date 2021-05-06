@@ -6,7 +6,7 @@ import SelectPicker from 'react-native-form-select-picker';
 import Product from "../components/product";
 
 
-const options = ["Apple", "Banana", "Orange"];
+const options = ["Yüz Bakımı", "Saç Bakımı", "Kişisel Bakım","Parfüm Deodorant","Güneş Ürünleri"];
 //import PickerExample from './PickerExample.js' /*açılır kapanır şey  */
 const addBarkod = ()=>{
 
@@ -16,6 +16,7 @@ const addBarkod = ()=>{
   const [x,setx]=useState([]);
   const [urunAdi, onChangeText] = useState("");
   const [selected, setSelected] = useState("");
+
   useEffect(() => {
     //function to get the value from AsyncStorage
     AsyncStorage.getItem('key').then(
@@ -51,9 +52,11 @@ const addBarkod = ()=>{
     .onSnapshot(doc => {
       const data = doc.data().icerik;
 
+      console.log("Data: ", getValue)
       {data.map((item) => Firebase.firestore().collection("Deneme").where("name", "==", item.value)
       .onSnapshot(querySnapshot => {
         querySnapshot.forEach(documentSnapshot => {
+          
          food.push({
            ...documentSnapshot.data()
           });
@@ -64,16 +67,23 @@ const addBarkod = ()=>{
     });
 
     setx(food);
-    console.log("aaaaa",food)
-
+    console.log("FOOOOD:",food)
     var washingtonRef = Firebase.firestore().collection("Bakod").doc(getValue).set( { icerik: inputs}) 
     .then(() => setProductVisible(true))
     .catch(error => alert(error))
+
+
+    var Ref = Firebase.firestore().collection('Bakod').doc(getValue);
+
+    var setWithMerge = Ref.set({
+        urunAdi:urunAdi,
+        kategori:selected,
+    }, { merge: true });
   }
 
-        renderList = (list) => {
-          return  <Product list={list}/>
-        };
+  renderList = (list) => {
+    return  <Product list={list}/>
+  };
 
   closeModal = () => {
     setProductVisible(false);
@@ -87,12 +97,12 @@ const addBarkod = ()=>{
             visible={productvisible}
             onRequestClose={()=>closeModal()}
           >
-            <Pressable
+            <TouchableOpacity
               style={[styles.button, styles.buttonClose]}
-              onPress={() =>closeModal()}
+              onPress={closeModal}
             >
-              <Text style={styles.textStyle}>Hide Modal</Text>
-            </Pressable>
+              <Text style={styles.textStyle}>X</Text>
+            </TouchableOpacity>
            <FlatList
                 data={x}
                 horizontal={false}
@@ -100,7 +110,8 @@ const addBarkod = ()=>{
                 renderItem={({ item }) => renderList(item)}
                 contentContainerStyle={{ flex: 1 }}
             />
-          </Modal>
+         </Modal>
+
             <TextInput
               style={styles.input}
               onChangeText={onChangeText}

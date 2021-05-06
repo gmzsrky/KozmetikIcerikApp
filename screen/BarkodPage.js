@@ -108,9 +108,8 @@ const BarkodPage = () =>  {
               <Text style={styles.textStyle}>Hide Modal</Text>
             </Pressable>
             <AddBarkod/>
-          
-            
          </Modal>
+         
          <Modal
             animationType="slide"
             visible={productvisible}

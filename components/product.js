@@ -1,6 +1,8 @@
 import React, { useState } from "react";
-import { View, Text, StyleSheet, Pressable,} from "react-native";
+import { View, Text, StyleSheet, Pressable,ScrollView} from "react-native";
 import { AntDesign } from "../node_modules/@expo/vector-icons";
+import { Card, Button, Icon,SearchBar} from 'react-native-elements';
+import { Entypo } from '@expo/vector-icons'; 
 
 //disable yellow warnings on EXPO client!
 console.disableYellowBox = true;
@@ -9,25 +11,17 @@ const product = ({ list }) => {
 
   return (
    
-    <View>
   
-      <View
-        style={[styles.listContainer]}
-      >
-        <View style={{flexDirection:"row", backgroundColor:"#adcceb"}}>
-         
-          <Text style={styles.listTitle} >
-            Name:{list.name}
-          </Text>
-          <Text style={styles.listTitle} >
-            Dene:{list.dene}
-          </Text>
-          <Text style={styles.listTitle}>
-            Fonksiyon:{list.fonksiyon}
-          </Text>
-        </View>  
-      </View>
-    </View>
+    <ScrollView style={styles.container}>
+        <Card style={styles.card}>
+        <Card.Title style={{fontSize:23}}>{list.name}</Card.Title>
+        <Card.Divider/>
+        <Text style={{marginBottom:"4%"}}>FONKSİYON: {list.fonksiyon}</Text>
+        <Text style={{marginBottom:"4%"}}>İRİTE: {list.irite}</Text>
+        <Text style={{marginBottom:"4%"}}>AKNE: {list.akne}</Text>
+        <Text style={{marginBottom:"4%"}}>DENE: {list.dene}</Text>
+        </Card>
+    </ScrollView>
   );
 };
 
@@ -95,6 +89,10 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     textAlign: "center"
   },
+  card:{
+    alignItems:"center",
+    justifyContent:"center"
+  }
 });
 
 export default product;
