@@ -4,6 +4,7 @@ import { BarCodeScanner } from 'expo-barcode-scanner';
 import Firebase from '../config/firebase'
 import AddBarkod from "../components/addBarkod";
 import Product from "../components/product";
+import { TouchableOpacity } from 'react-native';
 const BarkodPage = () =>  {
   const [hasPermission, setHasPermission] = useState(null);
   const [scanned, setScanned] = useState(false);
@@ -48,7 +49,6 @@ const BarkodPage = () =>  {
     });
 
     setx(food);
-    console.log("aaaaa",food)
     setProductVisible(true);
     }
 
@@ -78,7 +78,7 @@ const BarkodPage = () =>  {
   // alert(`Bar code with type ${type} and data ${data} has been scanned!`);
   };
       
-  closeModal = () => {
+  const closeModal = () => {
     setProductVisible(false);
     setBarkod(false);
   };
@@ -101,12 +101,12 @@ const BarkodPage = () =>  {
             visible={addBarkod}
             onRequestClose={()=>closeModal()}
           >
-            <Pressable
+            <TouchableOpacity
               style={[styles.button, styles.buttonClose]}
               onPress={() =>closeModal()}
             >
-              <Text style={styles.textStyle}>Hide Modal</Text>
-            </Pressable>
+              <Text style={styles.textStyle}>X</Text>
+            </TouchableOpacity>
             <AddBarkod/>
          </Modal>
          
@@ -115,16 +115,16 @@ const BarkodPage = () =>  {
             visible={productvisible}
              onRequestClose={()=>closeModal()}
           >
-           <Pressable
+           <TouchableOpacity
               style={[styles.button, styles.buttonClose]}
               onPress={() =>closeModal()}
             >
-              <Text style={styles.textStyle}>Hide Modal</Text>
-            </Pressable>
+              <Text style={styles.textStyle}>X</Text>
+            </TouchableOpacity>
            <FlatList
                 data={x}
                 horizontal={false}
-                showsHorizontalScrollIndicator={false}
+                showsVerticalScrollIndicator={true}
                 renderItem={({ item }) => renderList(item)}
                 contentContainerStyle={{ flex: 1 }}
             />

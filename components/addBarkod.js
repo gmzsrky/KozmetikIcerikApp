@@ -51,8 +51,6 @@ const addBarkod = ()=>{
     const getDoc = ref.doc(getValue)
     .onSnapshot(doc => {
       const data = doc.data().icerik;
-
-      console.log("Data: ", getValue)
       {data.map((item) => Firebase.firestore().collection("Deneme").where("name", "==", item.value)
       .onSnapshot(querySnapshot => {
         querySnapshot.forEach(documentSnapshot => {

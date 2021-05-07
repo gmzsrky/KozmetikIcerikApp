@@ -1,5 +1,7 @@
 import React, { useState } from "react";
-import { View, Text, StyleSheet, Pressable,ScrollView} from "react-native";
+import { View, Text, StyleSheet, Pressable,} from "react-native";
+
+import { ScrollView } from 'react-native';
 import { AntDesign } from "../node_modules/@expo/vector-icons";
 import { Card, Button, Icon,SearchBar} from 'react-native-elements';
 import { Entypo } from '@expo/vector-icons'; 
@@ -10,9 +12,7 @@ console.disableYellowBox = true;
 const product = ({ list }) => {
 
   return (
-   
-  
-    <ScrollView style={styles.container}>
+    <ScrollView>
         <Card style={styles.card}>
         <Card.Title style={{fontSize:23}}>{list.name}</Card.Title>
         <Card.Divider/>
