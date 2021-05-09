@@ -1,8 +1,9 @@
 import React, { useEffect, useState }  from 'react';
 import {View, Text, StyleSheet,TextInput, ImageBackground,TouchableOpacity,AsyncStorage} from 'react-native';
+import { Button } from 'native-base';
 //import AsyncStorage from '@react-native-community/async-storage';
 import Firebase from '../config/firebase'
-import { Button } from 'react-native-elements';
+//import { Button } from 'react-native-elements';
 import { inlineStyles } from 'react-native-svg';
 import { block } from 'react-native-reanimated';
 
@@ -90,6 +91,7 @@ return (
   <TouchableOpacity onPress={() => navigation.navigate('SingUp')}>
     <Text
      style={styles.forgot}>Sign up</Text>
+     
   </TouchableOpacity>
   </View>
 </View>
@@ -99,7 +101,7 @@ return (
 const styles = StyleSheet.create({
   container:{
     flex: 1, 
-    marginTop:"90%",
+    marginTop:"85%",
   
     
   },
@@ -115,25 +117,7 @@ const styles = StyleSheet.create({
     borderBottomWidth:5,
     paddingBottom:"2%",
   }, */
-  forgot:{
-    color:"#1d2334",
-    backgroundColor:"#ffff",
-    borderRadius:1,
-    fontSize:11,
-    fontWeight:"700",
-    borderBottomColor:"#634d4d",
-    borderBottomWidth:1,
-   //paddingBottom:"2%",
-     justifyContent:'space-between',
-    flexDirection:"row",
-  },
-    title:{
-    flexDirection:'row',
-    justifyContent:'space-between',
-    marginRight:"7%",
-    marginLeft:"4%",
-    }, 
-  
+
   inputView:{
     width:"90%",
     backgroundColor:"#80A1BB",
@@ -166,11 +150,12 @@ const styles = StyleSheet.create({
     borderRadius:14,
     height:"60%",
     alignSelf:"center",
-    marginTop:"10%",
+    marginTop:"7%",
     marginBottom:"5%",
-    marginRight:'5%',
-    paddingLeft:"5%",
+    marginRight:'4%',
+    paddingLeft:"4%",
     paddingRight:'5%',
+   
     
     
   },
@@ -180,8 +165,36 @@ const styles = StyleSheet.create({
     marginRight:"10%",
     marginLeft:"4%",
     
+    
   
   },
+  forgot:{
+    color:'white',
+    opacity: 0.8,
+    backgroundColor:"#526E6B",
+    borderRadius:3,
+    textAlign:"center",
+    padding:6,
+    fontSize:12,
+    //fontWeight:"900",
+    fontWeight:"bold",
+   // borderBottomColor:"#634d4d",
+    //borderBottomWidth:1,
+   //paddingBottom:"2%",
+     justifyContent:'space-between',
+    flexDirection:"row",
+    marginRight:"5%",
+    
+  },
+   title:{
+    marginTop:"5%",
+    padding:"2%",
+    flexDirection:'row',
+    justifyContent:'space-between',
+    marginRight:"7%",
+    marginLeft:"4%",
+    }, 
+  
   text:{
     height:'50%',
       fontWeight: 'bold',

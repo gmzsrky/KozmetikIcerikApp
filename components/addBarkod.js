@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react'
-import { View, Text, Button, TextInput, TouchableOpacity, StyleSheet, ScrollView,AsyncStorage,Modal,FlatList,Pressable } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, StyleSheet, ScrollView,AsyncStorage,Modal,FlatList,Pressable,ImageBackground } from 'react-native';
+import { Button} from 'react-native-elements'
 import Firebase from '../config/firebase';
 import { AntDesign } from '@expo/vector-icons';
 import SelectPicker from 'react-native-form-select-picker';
 import Product from "../components/product";
-
+import { Ionicons } from '@expo/vector-icons'; 
 
 const options = ["Yüz Bakımı", "Saç Bakımı", "Kişisel Bakım","Parfüm Deodorant","Güneş Ürünleri"];
 //import PickerExample from './PickerExample.js' /*açılır kapanır şey  */
@@ -88,9 +89,12 @@ const addBarkod = ()=>{
   };
 //ekleme çıkartma işlemleri 
   return (
+    <ImageBackground style={{flex: 1, opacity: 0.8,}}  source={require('../assets/addb.jpg')}>
     <View style={styles.container}>
+      <ScrollView>
 
-        <Modal
+        <Modal style={{marginTop:22,backgroundColor:"#c2d6ec"}}
+        
             animationType="slide"
             visible={productvisible}
             onRequestClose={()=>closeModal()}
@@ -98,8 +102,7 @@ const addBarkod = ()=>{
             <TouchableOpacity
               style={[styles.button, styles.buttonClose]}
               onPress={closeModal}
-            >
-              <Text style={styles.textStyle}>X</Text>
+            > <Text /*style={styles.textStyle}*/>KAPAT</Text>
             </TouchableOpacity>
            <FlatList
                 data={x}
@@ -108,35 +111,47 @@ const addBarkod = ()=>{
                 renderItem={({ item }) => renderList(item)}
                 contentContainerStyle={{ flex: 1 }}
             />
+         
          </Modal>
 
-            <TextInput
-              style={styles.input}
-              onChangeText={onChangeText}
-              value={urunAdi}
-              placeholder="Ürün Adını Giriniz..."
-            />
-            <SelectPicker
-            placeholder={"Seçim yapınız"}
-            onValueChange={(value) => {
-              // Do anything you want with the value. 
-              // For example, save in state.
-              setSelected(value);
-            }}
-            selected={selected}
-            >
-
-            {Object.values(options).map((val, index) => (
-              <SelectPicker.Item label={val} value={val} key={index} />
-            ))}
-
-            </SelectPicker>        
+                
 
 
-      <Text style={{fontWeight:'bold',fontSize:20}}>{getValue}</Text>
+      <Text style={{fontWeight:'bold',fontSize:33,color:'#1B456B',textAlign:'center'}}>{getValue}</Text>
       <ScrollView style={styles.inputsContainer}>
       {inputs.map((input, key)=>(
+        <View > 
+        <View style={styles.üst}>
+        <TextInput
+        style={styles.input}
+        onChangeText={onChangeText}
+        value={urunAdi}
+        placeholder="Ürün Adını Giriniz..."
+      />
+      </View> 
+       <View style={styles.üst}>
+      <SelectPicker 
+      placeholder={"Seçim yapınız"}
+      onValueChange={(value) => {
+        // Do anything you want with the value. 
+        // For example, save in state.
+        setSelected(value);
+      }}
+      selected={selected}
+      >
+     
+
+      {Object.values(options).map((val, index) => (
+        <SelectPicker.Item label={val} value={val} key={index} />
+      ))}
+
+      </SelectPicker>
+      </View>  
+       
+
+
         <View style={styles.inputContainer}>
+          
           <TextInput placeholder={"İçerik ekleyiniz.. "} value={input.value}  onChangeText={(text)=>inputHandler(text,key)}/>
           <View>
           <TouchableOpacity onPress = {addHandler}>
@@ -149,10 +164,20 @@ const addBarkod = ()=>{
           </TouchableOpacity>
           
         </View>
+        </View>
+        
+        
       ))}
+       
       </ScrollView>
-      <Button style={{backgroundColor:'#36405f'}} title="GÖNDER" onPress={addFirestore} />
+      <TouchableOpacity  style={styles.gonder}onPress={addFirestore}>
+        <Text style={styles.gonderText}>GÖNDER</Text>
+      </TouchableOpacity>
+
+     
+      </ScrollView>
     </View>
+    </ImageBackground>
   );
 }
 
@@ -161,34 +186,95 @@ const styles = StyleSheet.create({
     flex: 1,
     padding: 20,
     height:"7%",
-    backgroundColor: '#c2d6ec'
+    backgroundColor: '#c2d6ec',
+    
   },
   inputsContainer: {
-    flex: 1, marginBottom: 20
+    flex: 1, marginBottom: 20,
+    
+  },
+  üst:{ 
+  color:'white',
+  opacity: 0.8,
+  backgroundColor:"white",
+  borderRadius:3,
+  textAlign:"center",
+  padding:6,
+  fontSize:12,
+  fontWeight:"bold",
+  marginTop:'7%',
+  alignItems: 'center',
+  
+
+ 
+
+
   },
   inputContainer: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    borderBottomWidth: 1,
-    borderBottomColor: "lightgray"
+  color:'white',
+  opacity: 0.8,
+  backgroundColor:"white",
+  borderRadius:3,
+  textAlign:"center",
+  padding:6,
+  fontSize:12,
+  fontWeight:"bold",
+  marginTop:'7%',
+  flexDirection: 'row',
+  justifyContent: 'space-between',
+  alignItems: 'center',
+  padding:'4%',
+   
+   
   },
    button: {
     borderRadius: 20,
     padding: 10,
-    elevation: 2
+    elevation: 1,
+    marginTop:"97%",
   },
   buttonOpen: {
     backgroundColor: "#F194FF",
+    marginTop:"97%",
   },
   buttonClose: {
     backgroundColor: "#2196F3",
+    marginTop:"97%",
   },
   textStyle: {
     color: "white",
     fontWeight: "bold",
-    textAlign: "center"
+    textAlign: "center",
+   
   },
+  input:{
+   
+    marginTop:'4%',
+    marginLeft:'2.5%',
+    fontWeight:'bold',
+    
+
+  },
+  gonder:{
+    width:'99%',
+    backgroundColor:"#1B456B",
+    borderRadius:7,
+    alignItems:"center",
+    marginTop:"7%",
+    marginBottom:"5%",
+   
+
+  },
+  gonderText:{
+    marginTop: 15,
+    color:"#FFFF",
+    paddingBottom:'4%',
+    textAlign:'center',
+    fontSize:19,
+    fontWeight:"bold",
+  },
+   
+    
  
 })
 // scrollview un altındaydı normalde // <Button title="Add" onPress={addHandler} />

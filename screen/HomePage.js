@@ -1,7 +1,7 @@
 import { StatusBar } from 'expo-status-bar';
 import React, { useState ,useEffect,useCallback} from "react";
 import { ScrollView } from 'react-native';
-import { TouchableOpacity,FlatList,Text, Modal,Pressable} from 'react-native';
+import { TouchableOpacity,FlatList,Text, Modal,Pressable,ImageBackground} from 'react-native';
 import { StyleSheet} from 'react-native';
 import { Card, Button, Icon,SearchBar} from 'react-native-elements'
 import { Entypo } from '@expo/vector-icons'; 
@@ -73,6 +73,7 @@ const HomePage = () => {
           
         ); 
   return (
+  <ImageBackground style={{flex: 1, opacity: 0.9,}}  source={require('../assets/home.png')}>
   <ScrollView style={styles.container}>
 
         
@@ -115,7 +116,7 @@ const HomePage = () => {
   <Text style={{marginBottom:"40%"}}></Text>
     <Button
       icon={<Entypo name="chevron-right" size={24} color="white" />}
-      buttonStyle={{backgroundColor:'#36405f',borderRadius: 0, marginLeft: 0, marginRight: 0, marginBottom: 0}}
+      buttonStyle={{backgroundColor:'#4e84aa',borderRadius: 0, marginLeft: 0, marginRight: 0, marginBottom: 0}}
       title='ÜRÜNLERİ GÖSTER' />
   </Card.Image>
    </Card>
@@ -130,7 +131,7 @@ const HomePage = () => {
   <Text style={{marginBottom:"40%"}}></Text>
     <Button
       icon={<Entypo name="chevron-right" size={24} color="white" />}
-      buttonStyle={{backgroundColor:'#36405f',borderRadius: 0, marginLeft: 0, marginRight: 0, marginBottom: 0}}
+      buttonStyle={{backgroundColor:'#4e84aa',borderRadius: 0, marginLeft: 0, marginRight: 0, marginBottom: 0}}
       title='ÜRÜNLERİ GÖSTER' 
       />
   </Card.Image>
@@ -146,7 +147,7 @@ const HomePage = () => {
   <Text style={{marginBottom:"40%"}}></Text>
     <Button
       icon={<Entypo name="chevron-right" size={24} color="white" />}
-      buttonStyle={{backgroundColor:'#36405f',borderRadius: 0, marginLeft: 0, marginRight: 0, marginBottom: 0}}
+      buttonStyle={{backgroundColor:'#4e84aa',borderRadius: 0, marginLeft: 0, marginRight: 0, marginBottom: 0}}
       title='ÜRÜNLERİ GÖSTER' />
   </Card.Image>
 </Card>
@@ -162,7 +163,7 @@ const HomePage = () => {
   <Text style={{marginBottom:"40%"}}></Text>
     <Button
       icon={<Entypo name="chevron-right" size={24} color="white" />}
-      buttonStyle={{backgroundColor:'#36405f',borderRadius: 0, marginLeft: 0, marginRight: 0, marginBottom: 0}}
+      buttonStyle={{backgroundColor:'#4e84aa',borderRadius: 0, marginLeft: 0, marginRight: 0, marginBottom: 0}}
       title='ÜRÜNLERİ GÖSTER' />
   </Card.Image>
 </Card>
@@ -180,13 +181,14 @@ const HomePage = () => {
   <Text style={{marginBottom:"40%"}}></Text>
     <Button
       icon={<Entypo name="chevron-right" size={24} color="white" />}
-      buttonStyle={{backgroundColor:'#36405f',borderRadius: 0, marginLeft: 0, marginRight: 0, marginBottom: 0}}
+      buttonStyle={{backgroundColor:'#4e84aa',borderRadius: 0, marginLeft: 0, marginRight: 0, marginBottom: 0}}
       title='ÜRÜNLERİ GÖSTER' />
   </Card.Image>
 </Card>
 
       <StatusBar style="auto" />
     </ScrollView>
+    </ImageBackground>
     
     
   );
@@ -199,20 +201,23 @@ const HomePage = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: 'pink',
+    backgroundColor: '#FFFF',
     
   },
   searchBar:{
     width:"96%",
-    marginTop:"14%",
+    marginTop:"21%",
     marginBottom:"7%",
     marginLeft:"2%",
-    marginRight:"2%"
+    marginRight:"2%",
+  
+    
 
   },
   card:{
     alignItems:"center",
-    justifyContent:"center"
+    justifyContent:"center",
+    
   }
 });
 

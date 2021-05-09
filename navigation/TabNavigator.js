@@ -16,7 +16,7 @@ const Tab = createBottomTabNavigator();
 
 export default function TabNavigator() {
   return (
-      <Tab.Navigator tabBarOptions={{style:{backgroundColor:"white", },inactiveTintColor:"black", activeTintColor:"black"}} >
+      <Tab.Navigator tabBarOptions={{style:{backgroundColor:"white",opacity:0.86 },inactiveTintColor:"black", activeTintColor:"black"}} >
         <Tab.Screen name="HomePage" component={HomePage}  options={{
           tabBarLabel: 'Home',color:"white",
           tabBarIcon: ({ color, size }) => (
