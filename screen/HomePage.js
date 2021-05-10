@@ -5,7 +5,7 @@ import { TouchableOpacity,FlatList,Text, Modal,Pressable,ImageBackground} from '
 import { StyleSheet} from 'react-native';
 import { Card, Button, Icon,SearchBar} from 'react-native-elements'
 import { Entypo } from '@expo/vector-icons'; 
-
+import { AntDesign } from '@expo/vector-icons';
 import Firebase from '../config/firebase'
 import ProductHome from "../components/productHome"
 
@@ -50,7 +50,6 @@ const HomePage = () => {
       });
   
       setModal(true);
-      console.log("askasa=>",urun)
   } 
 
 
@@ -76,18 +75,17 @@ const HomePage = () => {
   <ImageBackground style={{flex: 1, opacity: 0.9,}}  source={require('../assets/home.png')}>
   <ScrollView style={styles.container}>
 
-        
             <Modal 
             animationType="slide"
             visible={modal}
              onRequestClose={()=>closeModal()}
           >
-           <Pressable
-              style={[styles.button, styles.buttonClose]}
+           <TouchableOpacity
+              style={[styles.button]}
               onPress={() =>closeModal()}
             >
-              <Text style={styles.textStyle}>Hide Modal</Text>
-            </Pressable>
+              <AntDesign name="closecircle" size={24} color="black" />
+            </TouchableOpacity>
            <FlatList
                 data={urun}
                 horizontal={false}
@@ -173,7 +171,7 @@ const HomePage = () => {
 
 
 
-<TouchableOpacity onPress={()=>urunPage("Güneş Ürünleri")}></TouchableOpacity>
+<TouchableOpacity onPress={()=>urunPage("Güneş Ürünleri")}>
 <Card style={styles.card}>
   <Card.Title style={{fontSize:23}}>GÜNEŞ ÜRÜNLERİ</Card.Title>
   <Card.Divider/>
@@ -185,7 +183,7 @@ const HomePage = () => {
       title='ÜRÜNLERİ GÖSTER' />
   </Card.Image>
 </Card>
-
+</TouchableOpacity>
       <StatusBar style="auto" />
     </ScrollView>
     </ImageBackground>
@@ -210,15 +208,18 @@ const styles = StyleSheet.create({
     marginBottom:"7%",
     marginLeft:"2%",
     marginRight:"2%",
-  
-    
-
   },
   card:{
     alignItems:"center",
     justifyContent:"center",
     
-  }
+  },
+  button: {
+   flexDirection:"row-reverse",
+  },
+  buttonOpen: {
+    backgroundColor: "#F194FF",
+  },
 });
 
 export default HomePage; 

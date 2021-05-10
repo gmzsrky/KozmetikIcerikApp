@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { View, Text, TextInput, TouchableOpacity, StyleSheet, ScrollView,AsyncStorage,Modal,FlatList,Pressable,ImageBackground } from 'react-native';
-import { Button} from 'react-native-elements'
-import Firebase from '../config/firebase';
 import { AntDesign } from '@expo/vector-icons';
+import Firebase from '../config/firebase';
 import SelectPicker from 'react-native-form-select-picker';
 import Product from "../components/product";
 import { Ionicons } from '@expo/vector-icons'; 
@@ -80,6 +79,7 @@ const addBarkod = ()=>{
     }, { merge: true });
   }
 
+
   renderList = (list) => {
     return  <Product list={list}/>
   };
@@ -93,16 +93,17 @@ const addBarkod = ()=>{
     <View style={styles.container}>
       <ScrollView>
 
-        <Modal style={{marginTop:22,backgroundColor:"#c2d6ec"}}
-        
+        <Modal
+        // style={{marginTop:22,backgroundColor:"#c2d6ec"}}
             animationType="slide"
             visible={productvisible}
             onRequestClose={()=>closeModal()}
           >
-            <TouchableOpacity
-              style={[styles.button, styles.buttonClose]}
-              onPress={closeModal}
-            > <Text /*style={styles.textStyle}*/>KAPAT</Text>
+                <TouchableOpacity
+              style={[styles.button]}
+              onPress={() =>closeModal()}
+            >
+              <AntDesign name="closecircle" size={24} color="black" />
             </TouchableOpacity>
            <FlatList
                 data={x}
@@ -118,8 +119,7 @@ const addBarkod = ()=>{
 
 
       <Text style={{fontWeight:'bold',fontSize:33,color:'#1B456B',textAlign:'center'}}>{getValue}</Text>
-      <ScrollView style={styles.inputsContainer}>
-      {inputs.map((input, key)=>(
+
         <View > 
         <View style={styles.üst}>
         <TextInput
@@ -147,11 +147,10 @@ const addBarkod = ()=>{
 
       </SelectPicker>
       </View>  
-       
-
-
+      </View>
+      <ScrollView style={styles.inputsContainer}>
+      {inputs.map((input, key)=>(
         <View style={styles.inputContainer}>
-          
           <TextInput placeholder={"İçerik ekleyiniz.. "} value={input.value}  onChangeText={(text)=>inputHandler(text,key)}/>
           <View>
           <TouchableOpacity onPress = {addHandler}>
@@ -164,17 +163,12 @@ const addBarkod = ()=>{
           </TouchableOpacity>
           
         </View>
-        </View>
-        
-        
       ))}
-       
-      </ScrollView>
-      <TouchableOpacity  style={styles.gonder}onPress={addFirestore}>
-        <Text style={styles.gonderText}>GÖNDER</Text>
+    
+    <TouchableOpacity  style={styles.gonder} onPress={addFirestore}>
+        <Text style={styles.gonderText}> GÖNDER </Text>
       </TouchableOpacity>
-
-     
+      </ScrollView>
       </ScrollView>
     </View>
     </ImageBackground>
@@ -227,20 +221,9 @@ const styles = StyleSheet.create({
    
    
   },
-   button: {
-    borderRadius: 20,
-    padding: 10,
-    elevation: 1,
-    marginTop:"97%",
-  },
-  buttonOpen: {
-    backgroundColor: "#F194FF",
-    marginTop:"97%",
-  },
-  buttonClose: {
-    backgroundColor: "#2196F3",
-    marginTop:"97%",
-  },
+  button: {
+    flexDirection:"row-reverse",
+   },
   textStyle: {
     color: "white",
     fontWeight: "bold",

@@ -5,6 +5,8 @@ import Firebase from '../config/firebase'
 import AddBarkod from "../components/addBarkod";
 import Product from "../components/product";
 import { TouchableOpacity } from 'react-native';
+import { AntDesign } from '@expo/vector-icons';
+
 const BarkodPage = () =>  {
   const [hasPermission, setHasPermission] = useState(null);
   const [scanned, setScanned] = useState(false);
@@ -102,10 +104,10 @@ const BarkodPage = () =>  {
             onRequestClose={()=>closeModal()}
           >
             <TouchableOpacity
-              style={[styles.button, styles.buttonClose]}
+              style={[styles.button]}
               onPress={() =>closeModal()}
             >
-              <Text style={styles.textStyle}>X</Text>
+              <AntDesign name="closecircle" size={24} color="black" />
             </TouchableOpacity>
             <AddBarkod/>
          </Modal>
@@ -115,11 +117,11 @@ const BarkodPage = () =>  {
             visible={productvisible}
              onRequestClose={()=>closeModal()}
           >
-           <TouchableOpacity
-              style={[styles.button, styles.buttonClose]}
+              <TouchableOpacity
+              style={[styles.button]}
               onPress={() =>closeModal()}
             >
-              <Text style={styles.textStyle}>X</Text>
+              <AntDesign name="closecircle" size={24} color="black" />
             </TouchableOpacity>
            <FlatList
                 data={x}
@@ -148,16 +150,8 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   button: {
-    borderRadius: 20,
-    padding: 10,
-    elevation: 2
-  },
-  buttonOpen: {
-    backgroundColor: "#F194FF",
-  },
-  buttonClose: {
-    backgroundColor: "#2196F3",
-  },
+    flexDirection:"row-reverse",
+   },
   textStyle: {
     color: "white",
     fontWeight: "bold",

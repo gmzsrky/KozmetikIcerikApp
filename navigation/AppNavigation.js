@@ -45,8 +45,8 @@ const AppNavigationContainer = () => {
           name="Gecis"
           component={Gecis}
           options={{
-            headerTransparent: true,
-            headerTitle: "",
+            headerShown:true,
+            headerLeft:false
           }}
         />
       </Stack.Navigator>
