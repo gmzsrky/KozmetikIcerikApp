@@ -40,10 +40,10 @@ const SignUp = props => {
 
   return (
 
-    <ImageBackground style={{flex: 1, opacity: 0.9,}}  source={require('../assets/gunes.jpg')}>
+    <ImageBackground style={{flex: 1, opacity: 0.85,}}  source={require('../assets/sign.jpg')}>
 <View style={styles.container}>
 
-    <Text style={styles.logo}>Bazı bilgilere ihtiyacımız var..</Text>
+    <Text style={styles.logo}>Lütfen Aşağıdaki Alanları Doldurunuz</Text>
     <View style={styles.inputView} >
       <TextInput  
         style={styles.inputText}
@@ -56,7 +56,7 @@ const SignUp = props => {
       <TextInput  
       
         style={styles.inputText}
-        placeholder="Adınz:" 
+        placeholder="Adınız:" 
         placeholderTextColor="#003f5c"
         onChangeText={isim => setisim(isim)}
         defaultValue={isim}/>
@@ -98,8 +98,10 @@ const SignUp = props => {
 const styles = StyleSheet.create({
     container:{
       flex: 1, 
-      paddingLeft:60,
-      paddingRight:60,
+      paddingLeft:40,
+      paddingRight:40,
+      marginTop:'20%',
+     
       
     },
     text:{
@@ -108,58 +110,64 @@ const styles = StyleSheet.create({
        borderBottomColor:"#26659c",
       borderBottomWidth:3,
       marginBottom:"5%",
-      fontWeight:"bold",},
+      fontWeight:"bold",
+    },
     
     radio:{
       paddingLeft:"20%",
       paddingRight:"20%",
     },
-    
     logo:{
       marginTop: "10%",
       fontWeight:"bold",
       fontSize:17,
-      color:"#2f5a93",
+      color:"#375267",
       marginBottom:"5%",
       textAlign: "center",
       alignSelf:'stretch',
-      borderBottomColor:"#2f5a93",
+      borderBottomColor:"#375267",
       borderBottomWidth:3,
       paddingBottom:"5%",
     
     },
-  
-    inputView:{
-    width:"90%",
-    backgroundColor:"#adcceb",
-    borderRadius:25,
-    height: "5%",
+
+  inputView:{
+    width:"100%",
+    backgroundColor:"#FFFF",
+    borderRadius:15,
+    height: "8%",
     marginBottom:"5%",
     justifyContent:"center",
     padding:"7%",
     alignSelf: 'center',
-      
-    },
-    inputText:{
-      height:50,
-      color:"black"
-    },
+  },
+  inputText:{
+    height:50,
+    color:"#FFFF"
+  },
     devamBtn:{
-      width:"80%",
-      backgroundColor:"#d77a5b",
-      borderRadius:25,
-      height:"8%",
-      alignSelf: 'center',
-  
-      marginTop:"10%",
-      marginBottom:"10%"
+      width:"100%",
+      backgroundColor:"#375267",
+      borderColor:"#103637",
+      borderRadius:14,
+      alignSelf:"center",
+      marginTop:"7%",
+      marginBottom:"5%",
+      marginRight:'4%',
+      paddingLeft:"4%",
+      paddingRight:'5%',
+     
     },
     devamText:{
-      marginTop: "5%",
-      color:"white",
-      textAlign: "center",
-      fontSize:30,
+      marginTop: 15,
+      color:"#FFFF",
+      alignItems:"center",
+      textAlign:'center',
+      fontSize:20,
+      padding:'5%',
+      paddingTop:'2%',
       fontWeight:"bold",
+      opacity:1,
     },
 
     pickerStyle:

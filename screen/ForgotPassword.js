@@ -41,7 +41,7 @@ const ForgotPassword =props=> {
 
 
     return (
-      <ImageBackground style={{flex: 1, opacity: 0.9,}}  source={require('../assets/gunes.jpg')}>
+      <ImageBackground style={{flex: 1, opacity: 0.85,}}  source={require('../assets/sign.jpg')}>
          <View style={styles.container}>
         <Text style={styles.txt}>Lütfen e-mail adresinizi girin</Text>
         <View style={styles.inputView}>
@@ -63,47 +63,64 @@ const ForgotPassword =props=> {
 const styles = StyleSheet.create({
     container:{
       justifyContent:'center',
-      alignItems:'center' ,   
+      alignItems:'center' ,  
+      marginTop:'5%',
+      paddingLeft:40,
+      paddingRight:40,
+      flex:1,
      },
      txt:{
-      fontSize:25,
+      marginTop: "10%",
+      marginBottom:'12%',
       fontWeight:"bold",
-      marginTop:"45%",
-      color: "#634d4d"
+      fontSize:17,
+      color:"#375267",
+      textAlign: "center",
+      alignSelf:'stretch',
+      borderBottomColor:"#375267",
+      borderBottomWidth:3,
+      paddingBottom:"5%",
     },
     inputView:{
-      width:"80%",
-      backgroundColor:"#adcceb",
-      borderRadius:25,
+      width:"95%",
+      backgroundColor:"#FFFF",
+      borderRadius:15,
       height: "8%",
       marginBottom:"5%",
       justifyContent:"center",
       padding:"7%",
       alignSelf: 'center',
-      marginTop:"20%",
+      marginTop:'10%',
+      padding:'7%',
+      marginRight:'4%',
     },
     inputText:{
       height:50,
-      marginTop:"3%",
-      alignSelf: 'center',
-      fontWeight:"bold",
+      color:"#FFFF"
     },
     resetbtn:{
-      width:"60%",
-      backgroundColor:"#d77a5b",
-      borderRadius:25,
-      height:"10%",
-      alignSelf: 'center',
+      width:"95%",
+      backgroundColor:"#375267",
+      borderColor:"#103637",
+      borderRadius:14,
+      alignSelf:"center",
       marginTop:"10%",
-      marginBottom:"10%"
+      marginBottom:"5%",
+      marginRight:'4%',
+      
+     
     },
     resetbtntxt:{
-      alignSelf:"center",
-      marginTop:"5%", 
+      marginTop: 15,
+      color:"#FFFF",
+      alignItems:"center",
+      textAlign:'center',
+      fontSize:20,
+      padding:'5%',
+      paddingTop:'2%',
       fontWeight:"bold",
-      fontSize: 25,
-      color:"white"
-    }
+      opacity:1,
+    },
 
   
   
