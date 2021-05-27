@@ -3,7 +3,7 @@ import { View, Text, TextInput, TouchableOpacity, StyleSheet, ScrollView,AsyncSt
 import { AntDesign } from '@expo/vector-icons';
 import Firebase from '../config/firebase';
 import SelectPicker from 'react-native-form-select-picker';
-import Product from "../components/product";
+import Product from "./Product";
 import { Ionicons } from '@expo/vector-icons'; 
 
 const options = ["Yüz Bakımı", "Saç Bakımı", "Kişisel Bakım","Parfüm Deodorant","Güneş Ürünleri"];
@@ -99,6 +99,7 @@ const addBarkod = ()=>{
             visible={productvisible}
             onRequestClose={()=>closeModal()}
           >
+            <ScrollView>
                 <TouchableOpacity
               style={[styles.button]}
               onPress={() =>closeModal()}
@@ -112,7 +113,7 @@ const addBarkod = ()=>{
                 renderItem={({ item }) => renderList(item)}
                 contentContainerStyle={{ flex: 1 }}
             />
-         
+          </ScrollView>
          </Modal>
 
                 

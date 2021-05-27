@@ -80,6 +80,7 @@ const HomePage = () => {
             visible={modal}
              onRequestClose={()=>closeModal()}
           >
+            <ScrollView>
            <TouchableOpacity
               style={[styles.button]}
               onPress={() =>closeModal()}
@@ -93,6 +94,7 @@ const HomePage = () => {
                 renderItem={({ item }) => renderList(item)}
                 contentContainerStyle={{ flex: 1 }}
             />
+            </ScrollView>
           </Modal>
 
 

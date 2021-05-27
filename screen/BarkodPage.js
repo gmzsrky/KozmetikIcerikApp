@@ -3,9 +3,10 @@ import { Text, View, StyleSheet, Button,Alert,Modal,AsyncStorage,FlatList ,Press
 import { BarCodeScanner } from 'expo-barcode-scanner';
 import Firebase from '../config/firebase'
 import AddBarkod from "../components/addBarkod";
-import Product from "../components/product";
+import Product from "../components/Product";
 import { TouchableOpacity } from 'react-native';
 import { AntDesign } from '@expo/vector-icons';
+import { ScrollView } from 'react-native-gesture-handler';
 
 const BarkodPage = () =>  {
   const [hasPermission, setHasPermission] = useState(null);
@@ -103,6 +104,7 @@ const BarkodPage = () =>  {
             visible={addBarkod}
             onRequestClose={()=>closeModal()}
           >
+            <ScrollView>
             <TouchableOpacity
               style={[styles.button]}
               onPress={() =>closeModal()}
@@ -110,6 +112,7 @@ const BarkodPage = () =>  {
               <AntDesign name="closecircle" size={24} color="black" />
             </TouchableOpacity>
             <AddBarkod/>
+            </ScrollView>
          </Modal>
          
          <Modal
@@ -117,6 +120,7 @@ const BarkodPage = () =>  {
             visible={productvisible}
              onRequestClose={()=>closeModal()}
           >
+            <ScrollView>
               <TouchableOpacity
               style={[styles.button]}
               onPress={() =>closeModal()}
@@ -130,6 +134,7 @@ const BarkodPage = () =>  {
                 renderItem={({ item }) => renderList(item)}
                 contentContainerStyle={{ flex: 1 }}
             />
+            </ScrollView>
           </Modal>
 
 
@@ -138,7 +143,7 @@ const BarkodPage = () =>  {
         onBarCodeScanned={scanned ? undefined : handleBarCodeScanned}
         style={StyleSheet.absoluteFillObject}
       />
-      {scanned && <Button title={'Tap to Scan Again'} onPress={() => setScanned(true)} />}
+      {scanned && <Button title={'Yeni Bir Ürün Okutunuz'} onPress={() => setScanned(false)} />}
     </View>
   );
 }
