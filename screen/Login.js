@@ -1,7 +1,6 @@
 import React, { useEffect, useState }  from 'react';
-import {View, Text, StyleSheet,TextInput, ImageBackground,TouchableOpacity,AsyncStorage} from 'react-native';
+import {View, Text, StyleSheet,TextInput, ImageBackground,TouchableOpacity,AsyncStorage } from 'react-native';
 import { Button } from 'native-base';
-//import AsyncStorage from '@react-native-community/async-storage';
 import Firebase from '../config/firebase'
 //import { Button } from 'react-native-elements';
 import { inlineStyles } from 'react-native-svg';
@@ -24,10 +23,18 @@ const Login = props => {
 
     Firebase.auth()
         .signInWithEmailAndPassword(email, password)
-        .then(() => navigation.navigate('Gecis'))
+        .then(() => navigation.navigate('Gecis',{
+          screen: 'HomePage',
+          params: {
+            screen: 'HomePage',
+            params: {
+              caption:email,
+            },
+          },
+        }
+         ))
         .catch(error => alert(error))
 }
-
   
 const saveValueFunction = () => {
   //function to save the value in AsyncStorage

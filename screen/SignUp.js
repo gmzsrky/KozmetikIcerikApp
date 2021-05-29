@@ -24,7 +24,7 @@ const SignUp = props => {
   const [isim, setisim] = useState('');
 
   handleSignUp = () => {
-    dbh.collection("Users").doc(email).set({
+    dbh.collection(email).doc("GenelBilgi").set({
       KullaniciAdi: kullaniciadi,
       Isim:isim,
       Soyisim:soyisim,

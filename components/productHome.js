@@ -8,6 +8,7 @@ import Firebase from '../config/firebase'
 import { Entypo } from '@expo/vector-icons'; 
 import Product from './Product';
 import { AntDesign } from '@expo/vector-icons';
+import { Touchable } from 'react-native';
 
 //disable yellow warnings on EXPO client!
 console.disableYellowBox = true;
@@ -16,7 +17,32 @@ const productHome = ({ list }) => {
 
   const [x,setx]=useState([]);
   const [productvisible, setProductVisible] = useState(false);
+  const [heart, setHeart] = useState(false);
+  const [inputs, setInputs] = useState([{key: '', value: ''}]);
+  var user = Firebase.auth().currentUser.email;
 
+
+  const inputHandler = (text)=>{
+    if(heart==true){
+      setHeart(false);
+      Firebase.firestore().collection(user).doc(text).delete().then(() => {
+        console.log("Document successfully deleted!");
+    }).catch((error) => {
+        console.error("Error removing document: ", error);
+    });
+    
+    }
+    else {
+      setHeart(true);
+      Firebase.firestore().collection(user).doc(text).set({ fav:true,name:text})
+      .then(() => {
+          console.log("Document successfully written!");
+      })
+      .catch((error) => {
+          console.error("Error writing document: ", error);
+      });
+      }
+    }  
 
   const productPage=()=>{
     const food=[...x];
@@ -72,13 +98,20 @@ const productHome = ({ list }) => {
 
 
 
-          <TouchableOpacity onPress={()=>productPage()}>
+          <TouchableOpacity>
          <Card style={styles.card}>
-        <Card.Title style={{fontSize:23}}>{list.urunAdi}</Card.Title>
+        <Card.Title style={{fontSize:23}}>{list.urunAdi}
+    
+          <TouchableOpacity   onPress={()=>inputHandler(list.urunAdi)}>
+        <AntDesign name={heart ? "heart" : "hearto"}size={24} color="red"/>
+        
+        </TouchableOpacity>
+        </Card.Title>
         <Card.Divider/>
         <Card.Image style={{resizeMode: 'cover'}} source={require('../assets/yuuz.jpg')}>
         <Text style={{marginBottom:"40%"}}></Text>
           <Button
+           onPress={()=>productPage()}
             icon={<Entypo name="chevron-right" size={24} color="white" />}
             buttonStyle={{backgroundColor:'#36405f',borderRadius: 0, marginLeft: 0, marginRight: 0, marginBottom: 0}}
             title='ÜRÜNLERİ GÖSTER' />

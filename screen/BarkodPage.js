@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Text, View, StyleSheet, Button,Alert,Modal,AsyncStorage,FlatList ,Pressable } from 'react-native';
+import { Text, View, StyleSheet, Button,Alert,Modal,AsyncStorage,FlatList } from 'react-native';
 import { BarCodeScanner } from 'expo-barcode-scanner';
 import Firebase from '../config/firebase'
 import AddBarkod from "../components/addBarkod";

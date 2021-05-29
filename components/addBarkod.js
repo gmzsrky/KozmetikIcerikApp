@@ -65,7 +65,6 @@ const addBarkod = ()=>{
     });
 
     setx(food);
-    console.log("FOOOOD:",food)
     var washingtonRef = Firebase.firestore().collection("Bakod").doc(getValue).set( { icerik: inputs}) 
     .then(() => setProductVisible(true))
     .catch(error => alert(error))

@@ -8,14 +8,14 @@ import ForgotPassword from "../screen/ForgotPassword";
 import Gecis from "../screen/Gecis";
 
 import Login from "../screen/Login";
-
+import Splash from "../screen/Splash";
 
 const Stack = createStackNavigator();
 
 const AppNavigationContainer = () => {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Login">
+      <Stack.Navigator initialRouteName="Splash">
         
         <Stack.Screen
           name="SingUp"
@@ -49,6 +49,7 @@ const AppNavigationContainer = () => {
             headerLeft:false
           }}
         />
+        <Stack.Screen name="Splash"  component={Splash} />
       </Stack.Navigator>
     </NavigationContainer>
   );
