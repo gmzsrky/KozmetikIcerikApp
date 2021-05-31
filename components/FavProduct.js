@@ -2,19 +2,16 @@ import React, { useState } from "react";
 import { View, Text, StyleSheet,} from "react-native";
 import { ListItem, Avatar } from 'react-native-elements'
 
+import { AntDesign } from '@expo/vector-icons';
 //disable yellow warnings on EXPO client!
 console.disableYellowBox = true;
 
 const FavProduct = ({ list }) => {
 
   return (
-    <View>
+    <View style={{flexDirection:"row"}}>
+     <AntDesign name="heart" size={24} color="red"/>
     <Text>{list.name}</Text>
-        <ListItem  bottomDivider>
-          <ListItem.Content>
-          </ListItem.Content>
-        </ListItem>
-    
   </View>
   );
 };

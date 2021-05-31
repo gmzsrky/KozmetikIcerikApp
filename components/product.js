@@ -18,7 +18,7 @@ const Product = ({ list }) => {
         <Text style={{marginBottom:"4%"}}>FONKSİYON: {list.fonksiyon}</Text>
         <Text style={{marginBottom:"4%"}}>İRİTE: {list.irite}</Text>
         <Text style={{marginBottom:"4%"}}>AKNE: {list.akne}</Text>
-        <Text style={{marginBottom:"4%"}}>DENE: {list.dene}</Text>
+        <Text style={{marginBottom:"4%"}}>ZARAR MİKTARI: {list.dene}</Text>
         </Card>
   );
 };

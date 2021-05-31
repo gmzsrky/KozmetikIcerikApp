@@ -5,7 +5,7 @@ import { createStackNavigator } from "@react-navigation/stack";
 
 import SignUp from "../screen/SignUp";
 import ForgotPassword from "../screen/ForgotPassword";
-import Gecis from "../screen/Gecis";
+import Ingredients from "../screen/Ingredients";
 
 import Login from "../screen/Login";
 import Splash from "../screen/Splash";
@@ -42,11 +42,12 @@ const AppNavigationContainer = () => {
           }}
         />
         <Stack.Screen
-          name="Gecis"
-          component={Gecis}
+          name="Ingredients"
+          component={Ingredients}
           options={{
             headerShown:true,
-            headerLeft:false
+            headerLeft:false,
+            headerBackTitle:"eeee"
           }}
         />
         <Stack.Screen name="Splash"  component={Splash} />

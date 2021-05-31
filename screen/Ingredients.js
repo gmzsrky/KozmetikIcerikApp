@@ -5,7 +5,7 @@ import { StyleSheet, Text, View} from 'react-native';
 
 import TabNavigator from '../navigation/TabNavigator';
 
-const Gecis =(props)=> {
+const Ingredients =(props)=> {
     
   return (
     <View style={styles.container}>
@@ -22,4 +22,4 @@ const styles = StyleSheet.create({
     flex: 1,
   },
 });
-export default Gecis;
+export default Ingredients;

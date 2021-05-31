@@ -23,7 +23,7 @@ const Login = props => {
 
     Firebase.auth()
         .signInWithEmailAndPassword(email, password)
-        .then(() => navigation.navigate('Gecis',{
+        .then(() => navigation.navigate('Ingredients',{
           screen: 'HomePage',
           params: {
             screen: 'HomePage',
@@ -85,7 +85,7 @@ return (
         <Text style={styles.loginText}>LOGİN</Text>
   </TouchableOpacity>
   
-  <TouchableOpacity style={styles.loginBtn} onPress={() => navigation.navigate('Gecis')}>
+  <TouchableOpacity style={styles.loginBtn} onPress={() => navigation.navigate('Ingredients')}>
     <Text
      style={styles.loginText}>Kayıt olmadan devam et</Text>
   </TouchableOpacity>

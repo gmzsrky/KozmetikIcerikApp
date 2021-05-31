@@ -29,7 +29,7 @@ const Splash = props => {
       
       Firebase.auth()
       .signInWithEmailAndPassword(email, password)
-      .then(() => navigation.navigate('Gecis',{
+      .then(() => navigation.navigate('Ingredients',{
         screen: 'HomePage',
         params: {
           screen: 'HomePage',

@@ -4,6 +4,9 @@ import Firebase from '../config/firebase'
 import { MaterialIcons } from '@expo/vector-icons';
 import { StyleSheet, Text, View ,FlatList,ScrollView} from 'react-native';
 import FavProduct from "../components/FavProduct";
+import {Dimensions} from 'react-native';
+import WavyHeader from "../components/WavyHeader";
+
 const ProfilePage = props => { 
 
   const [icerik,seticerik]=useState([]);
@@ -51,7 +54,7 @@ const ProfilePage = props => {
 
   return (
     <View style={styles.container}>
-  
+    <Text>FAVORİ ÜRÜNLER </Text>
   <ScrollView>
       <FlatList
                 data={icerik}

@@ -206,7 +206,7 @@ const styles = StyleSheet.create({
   },
   searchBar:{
     width:"96%",
-    marginTop:"21%",
+    marginTop:"3%",
     marginBottom:"7%",
     marginLeft:"2%",
     marginRight:"2%",

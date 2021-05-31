@@ -32,7 +32,7 @@ const SignUp = props => {
      })
     Firebase.auth()
         .createUserWithEmailAndPassword(email, password)
-        .then(() =>navigation.navigate("Gecis"))
+        .then(() =>navigation.navigate("Ingredientss"))
         .catch(error => alert(error))
 }
 

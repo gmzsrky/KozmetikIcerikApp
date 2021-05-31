@@ -1,15 +1,16 @@
 import React, { useState } from "react";
-import { View, Text, StyleSheet,} from "react-native";
+import { View, Text, StyleSheet,TouchableOpacity} from "react-native";
 import { ListItem, Avatar } from 'react-native-elements'
-
 //disable yellow warnings on EXPO client!
 console.disableYellowBox = true;
 
 const IngredientPageModal = ({ list }) => {
 
+
   return (
     <View>
     {
+
         <ListItem  bottomDivider>
           <ListItem.Content>
             <ListItem.Title>{list.name}</ListItem.Title>
@@ -36,6 +37,13 @@ const styles = StyleSheet.create({
     justifyContent:"center",
     alignContent:"center",
     flexDirection:"row"
+  },
+  searchBar:{
+    width:"96%",
+    marginTop:"3%",
+    marginBottom:"7%",
+    marginLeft:"2%",
+    marginRight:"2%",
   },
   
 });
