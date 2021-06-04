@@ -9,6 +9,8 @@ import WavyHeader from "../components/WavyHeader";
 
 const ProfilePage = props => { 
 
+  const [name,setName]=useState("");
+  const [surname,setSurname]=useState("");
   const [icerik,seticerik]=useState([]);
   const {navigation} = props;
   var user = Firebase.auth().currentUser.email;
@@ -25,11 +27,25 @@ const ProfilePage = props => {
           });
         });
         seticerik(icerikk);
-        console.log("icerik:",icerik)
     })
     .catch((error) => {
         console.log("Error getting documents: ", error);
     });
+
+
+    var docRef = Firebase.firestore().collection(user).doc("GenelBilgi");
+    docRef.get().then((doc) => {
+    if (doc.exists) {
+        console.log("Document data:", doc.data());
+        setName(doc.data().KullaniciAdi)
+        setSurname(doc.data().Soyisim)
+    } else {
+        // doc.data() will be undefined in this case
+        console.log("No such document!");
+    }
+}).catch((error) => {
+    console.log("Error getting document:", error);
+});
   }, []);
 
 
@@ -54,6 +70,10 @@ const ProfilePage = props => {
 
   return (
     <View style={styles.container}>
+    <View style={{alignItems:"flex-end",right:15}}>
+    <MaterialIcons name="exit-to-app" size={30} color="black"  onPress={()=>handlelogout()} />
+    </View>
+    <Text>"HOŞGELDİN" {name} {surname} </Text>
     <Text>FAVORİ ÜRÜNLER </Text>
   <ScrollView>
       <FlatList

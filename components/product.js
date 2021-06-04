@@ -1,23 +1,20 @@
 import React, { useState } from "react";
 import { View, Text, StyleSheet, Pressable,} from "react-native";
+import { Card, Badge,} from 'react-native-elements';
 
-import { ScrollView } from 'react-native';
-import { AntDesign } from "@expo/vector-icons";
-import { Card, Button, Icon,SearchBar} from 'react-native-elements';
-import { Entypo } from '@expo/vector-icons'; 
 
 //disable yellow warnings on EXPO client!
 console.disableYellowBox = true;
 
 const Product = ({ list }) => {
-
+  
   return (
         <Card style={styles.card}>
         <Card.Title style={{fontSize:23}}>{list.name}</Card.Title>
         <Card.Divider/>
         <Text style={{marginBottom:"4%"}}>FONKSİYON: {list.fonksiyon}</Text>
-        <Text style={{marginBottom:"4%"}}>İRİTE: {list.irite}</Text>
-        <Text style={{marginBottom:"4%"}}>AKNE: {list.akne}</Text>
+        <Text style={{marginBottom:"4%"}}>İRİTASYON: {list.irite}</Text>
+        <Text style={{marginBottom:"4%"}}>KOMEDOJENİK: {list.akne}</Text>
         <Text style={{marginBottom:"4%"}}>ZARAR MİKTARI: {list.dene}</Text>
         </Card>
   );

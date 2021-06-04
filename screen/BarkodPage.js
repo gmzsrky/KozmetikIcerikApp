@@ -7,21 +7,23 @@ import Product from "../components/Product";
 import { TouchableOpacity } from 'react-native';
 import { AntDesign } from '@expo/vector-icons';
 import { ScrollView } from 'react-native-gesture-handler';
+import { Badge,} from 'react-native-elements';
 
 const BarkodPage = () =>  {
   const [hasPermission, setHasPermission] = useState(null);
   const [scanned, setScanned] = useState(false);
   const [dataa, setdataa] = useState("");
+  const [productName, setProductName] = useState("");
   const [addBarkod, setBarkod] = useState(false);
   const [productvisible, setProductVisible] = useState(false);
-  const [x,setx]=useState([]);
+  const [array,setArray]=useState([]);
 
   useEffect(() => {
     (async () => {
       const { status } = await BarCodeScanner.requestPermissionsAsync();
       setHasPermission(status === 'granted');
     })();
-  }, []);
+  },[]);
 
   const handleBarCodeScanned = ({ type, data }) => {
     setScanned(true);
@@ -34,15 +36,16 @@ const BarkodPage = () =>  {
 
     const productPage=()=>{
       
-    const food=[...x];
+    const _Array=[...array];
     const ref =  Firebase.firestore().collection('Bakod');
     const getDoc = ref.doc(data)
     .onSnapshot(doc => {
       const veri = doc.data().icerik;
+      setProductName(doc.data().urunAdi);
       {veri.map((item) => Firebase.firestore().collection("Deneme").where("name", "==", item.value)
       .onSnapshot(querySnapshot => {
         querySnapshot.forEach(documentSnapshot => {
-         food.push({
+          _Array.push({
            ...documentSnapshot.data()
           });
         });
@@ -51,7 +54,7 @@ const BarkodPage = () =>  {
       }
     });
 
-    setx(food);
+    setArray(_Array);
     setProductVisible(true);
     }
 
@@ -104,6 +107,7 @@ const BarkodPage = () =>  {
             visible={addBarkod}
             onRequestClose={()=>closeModal()}
           >
+            
             <ScrollView>
             <TouchableOpacity
               style={[styles.button]}
@@ -120,15 +124,35 @@ const BarkodPage = () =>  {
             visible={productvisible}
              onRequestClose={()=>closeModal()}
           >
+     
             <ScrollView>
-              <TouchableOpacity
+        
+            <View style={styles.middle} >
+            <TouchableOpacity
               style={[styles.button]}
               onPress={() =>closeModal()}
             >
               <AntDesign name="closecircle" size={24} color="black" />
             </TouchableOpacity>
+            <Text style={styles.text}>{productName.toUpperCase()}</Text>
+            </View>
+            <View style={{flexDirection:"row",justifyContent:"space-around",marginTop:"3%"}}>
+           <Badge value="1" status="success"/>
+           <Badge value="2" status="success"  />
+           <Badge value="3" status="warning"  />
+           <Badge value="4" status="warning"  />
+           <Badge value="5" status="error"  />
+           </View>
+           <View style={{flexDirection:"row",justifyContent:"space-around"}}>
+           <Text>Temiz   </Text>
+           <Text>İyi</Text>
+          <Text>İdare Eder</Text>
+          <Text>Kötü</Text>
+          <Text>Zararlı</Text>
+           </View>
+
            <FlatList
-                data={x}
+                data={array}
                 horizontal={false}
                 showsVerticalScrollIndicator={true}
                 renderItem={({ item }) => renderList(item)}
@@ -162,6 +186,18 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     textAlign: "center"
   },
+  middle: {
+    height:"20%",
+    backgroundColor: "#ff9774",
+    borderBottomRightRadius: 40,
+    borderTopLeftRadius:40,
+  },
+  text:{
+  alignSelf:'center' ,
+  color:"white",
+  fontWeight:'bold',
+  fontSize:30,
+  }
 });
 
 

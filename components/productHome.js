@@ -9,13 +9,15 @@ import { Entypo } from '@expo/vector-icons';
 import Product from './Product';
 import { AntDesign } from '@expo/vector-icons';
 import {Dimensions} from 'react-native';
-import WavyHeader from "../components/WavyHeader";
+import {  Badge, } from 'react-native-elements'
 //disable yellow warnings on EXPO client!
 console.disableYellowBox = true;
 
 const productHome = ({ list }) => { 
 
   const [x,setx]=useState([]);
+  
+  const [productName, setProductName] = useState("");
   const [productvisible, setProductVisible] = useState(false);
   const [heart, setHeart] = useState(false);
   const [inputs, setInputs] = useState([{key: '', value: ''}]);
@@ -51,6 +53,7 @@ const productHome = ({ list }) => {
    .then((querySnapshot) => {
        querySnapshot.forEach((doc) => {
       const veri = doc.data().icerik;
+      setProductName(doc.data().urunAdi);
       {veri.map((item) => Firebase.firestore().collection("Deneme").where("name", "==", item.value)
       .onSnapshot(querySnapshot => {
         querySnapshot.forEach(documentSnapshot => {
@@ -80,16 +83,29 @@ const productHome = ({ list }) => {
              onRequestClose={()=>closeModal()}
           >
             <ScrollView>
-            <WavyHeader
-        customStyles={styles.svgCurve}
-        customHeight={160}
-        customTop={130}
-        customBgColor="#5000ca"
-        customWavePattern="M0,96L48,112C96,128,192,160,288,186.7C384,213,480,235,576,213.3C672,192,768,128,864,128C960,128,1056,192,1152,208C1248,224,1344,192,1392,176L1440,160L1440,0L1392,0C1344,0,1248,0,1152,0C1056,0,960,0,864,0C768,0,672,0,576,0C480,0,384,0,288,0C192,0,96,0,48,0L0,0Z"
-      />
-      <View style={styles.headerContainer}>
-        <Text style={styles.headerText}>{list.urunAdi}</Text>
-      </View>
+            <View style={styles.middle} >
+            <TouchableOpacity
+              style={[styles.button]}
+              onPress={() =>closeModal()}
+            >
+              <AntDesign name="closecircle" size={24} color="black" />
+            </TouchableOpacity>
+            <Text style={styles.text}>{productName.toUpperCase()}</Text>
+            </View>
+            <View style={{flexDirection:"row",justifyContent:"space-around",marginTop:"3%"}}>
+           <Badge value="1" status="success"/>
+           <Badge value="2" status="success"  />
+           <Badge value="3" status="warning"  />
+           <Badge value="4" status="warning"  />
+           <Badge value="5" status="error"  />
+           </View>
+           <View style={{flexDirection:"row",justifyContent:"space-around"}}>
+           <Text>Temiz   </Text>
+           <Text>İyi</Text>
+          <Text>İdare Eder</Text>
+          <Text>Kötü</Text>
+          <Text>Zararlı</Text>
+           </View>
            <FlatList
            style={{marginTop:"20%"}}
                 data={x}
@@ -194,6 +210,18 @@ const productHome = ({ list }) => {
         color: '#fff',
         textAlign: 'center',
         marginTop: 30
+      }, 
+       middle: {
+        height:"20%",
+        backgroundColor: "#ff9774",
+        borderBottomRightRadius: 40,
+        borderTopLeftRadius:40,
+      },
+      text:{
+      alignSelf:'center' ,
+      color:"white",
+      fontWeight:'bold',
+      fontSize:30,
       }
     });
     

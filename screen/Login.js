@@ -56,6 +56,23 @@ const saveValueFunction = () => {
   handleLogin();
 };
 
+
+const genelKullanici = () => {
+  Firebase.auth()
+  .signInWithEmailAndPassword("genel@gmail.com", "sifre12345")
+  .then(() => navigation.navigate('Ingredients',{
+    screen: 'HomePage',
+    params: {
+      screen: 'HomePage',
+      params: {
+        caption:email,
+      },
+    },
+  }
+   ))
+  .catch(error => alert(error))
+}
+
 return (
 <ImageBackground style={{flex: 1, opacity: 0.9,}}  source={require('../assets/log.jpg')}>
   <View style={styles.container}> 
@@ -82,10 +99,10 @@ return (
   <View style={styles.butonlar}>
   <TouchableOpacity  style={styles.loginBtn} onPress={()=>saveValueFunction()}>
         
-        <Text style={styles.loginText}>LOGİN</Text>
+        <Text style={styles.loginText}>GİRİŞ</Text>
   </TouchableOpacity>
   
-  <TouchableOpacity style={styles.loginBtn} onPress={() => navigation.navigate('Ingredients')}>
+  <TouchableOpacity style={styles.loginBtn} onPress={() =>genelKullanici()}>
     <Text
      style={styles.loginText}>Kayıt olmadan devam et</Text>
   </TouchableOpacity>
@@ -93,11 +110,11 @@ return (
 
   <View style={styles.title}  >
   <TouchableOpacity  onPress={() => navigation.navigate('ForgotPassword')}>
-    <Text style={styles.forgot}>Forgot Password?</Text>
+    <Text style={styles.forgot}>Şifremi Unuttum</Text>
   </TouchableOpacity>
   <TouchableOpacity onPress={() => navigation.navigate('SingUp')}>
     <Text
-     style={styles.forgot}>Sign up</Text>
+     style={styles.forgot}>Kayıt Ol</Text>
      
   </TouchableOpacity>
   </View>

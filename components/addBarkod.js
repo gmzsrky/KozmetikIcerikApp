@@ -5,6 +5,7 @@ import Firebase from '../config/firebase';
 import SelectPicker from 'react-native-form-select-picker';
 import Product from "./Product";
 import { Ionicons } from '@expo/vector-icons'; 
+import { Avatar, Badge, Icon, withBadge } from 'react-native-elements'
 
 const options = ["Yüz Bakımı", "Saç Bakımı", "Kişisel Bakım","Parfüm Deodorant","Güneş Ürünleri"];
 //import PickerExample from './PickerExample.js' /*açılır kapanır şey  */
@@ -16,6 +17,7 @@ const addBarkod = ()=>{
   const [x,setx]=useState([]);
   const [urunAdi, onChangeText] = useState("");
   const [selected, setSelected] = useState("");
+  const [productName, setProductName] = useState("");
 
   useEffect(() => {
     //function to get the value from AsyncStorage
@@ -51,6 +53,7 @@ const addBarkod = ()=>{
     const getDoc = ref.doc(getValue)
     .onSnapshot(doc => {
       const data = doc.data().icerik;
+      setProductName(doc.data().urunAdi);
       {data.map((item) => Firebase.firestore().collection("Deneme").where("name", "==", item.value)
       .onSnapshot(querySnapshot => {
         querySnapshot.forEach(documentSnapshot => {
@@ -99,12 +102,29 @@ const addBarkod = ()=>{
             onRequestClose={()=>closeModal()}
           >
             <ScrollView>
-                <TouchableOpacity
+            <View style={styles.middle} >
+            <TouchableOpacity
               style={[styles.button]}
               onPress={() =>closeModal()}
             >
               <AntDesign name="closecircle" size={24} color="black" />
             </TouchableOpacity>
+            <Text style={styles.text}>{productName.toUpperCase()}</Text>
+            </View>
+            <View style={{flexDirection:"row",justifyContent:"space-around",marginTop:"3%"}}>
+           <Badge value="1" status="success"/>
+           <Badge value="2" status="success"  />
+           <Badge value="3" status="warning"  />
+           <Badge value="4" status="warning"  />
+           <Badge value="5" status="error"  />
+           </View>
+           <View style={{flexDirection:"row",justifyContent:"space-around"}}>
+           <Text>Temiz   </Text>
+           <Text>İyi</Text>
+          <Text>İdare Eder</Text>
+          <Text>Kötü</Text>
+          <Text>Zararlı</Text>
+           </View>
            <FlatList
                 data={x}
                 horizontal={false}
@@ -256,6 +276,18 @@ const styles = StyleSheet.create({
     fontSize:19,
     fontWeight:"bold",
   },
+  middle: {
+    height:"20%",
+    backgroundColor: "#ff9774",
+    borderBottomRightRadius: 40,
+    borderTopLeftRadius:40,
+  },
+  text:{
+  alignSelf:'center' ,
+  color:"white",
+  fontWeight:'bold',
+  fontSize:30,
+  }
    
     
  
