@@ -48,7 +48,7 @@ const Splash = props => {
 
   return (
     <View style={styles.container}>
-       <ImageBackground style={{flex: 1, opacity: 0.87,}} source={require('../assets/splash.png')}>
+       <ImageBackground style={{flex: 1, opacity: 0.87,}} source={require('../assets/splash.jpg')}>
        
      
       </ImageBackground>

@@ -123,13 +123,13 @@ const productHome = ({ list }) => {
          <Card style={styles.card}>
         <Card.Title style={{fontSize:23}}>{list.urunAdi}
     
-          <TouchableOpacity   onPress={()=>inputHandler(list.urunAdi)}>
-        <AntDesign name={heart ? "heart" : "hearto"}size={24} color="red"/>
+          <TouchableOpacity   onPress={()=>inputHandler(list.urunAdi.toUpperCase())}>
+        <AntDesign name={heart ? "heart" : "hearto"}size={24} color="red" />
         
         </TouchableOpacity>
         </Card.Title>
         <Card.Divider/>
-        <Card.Image style={{resizeMode: 'cover'}} source={require('../assets/yuuz.jpg')}>
+        <Card.Image style={{resizeMode: 'cover'}} source={require('../assets/urun.jpg')}>
         <Text style={{marginBottom:"40%"}}></Text>
           <Button
            onPress={()=>productPage()}
@@ -222,7 +222,8 @@ const productHome = ({ list }) => {
       color:"white",
       fontWeight:'bold',
       fontSize:30,
-      }
+      },
+      
     });
     
 
