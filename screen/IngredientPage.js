@@ -29,7 +29,7 @@ const IngredientPage = () => {
   renderIngredient = (list) => {
     return  <IngredientPageModal list={list}/>
   };
-
+ 
   return (
     <View style={styles.listContainer}>
       <ScrollView>

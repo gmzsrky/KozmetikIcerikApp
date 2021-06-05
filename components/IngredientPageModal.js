@@ -13,8 +13,8 @@ const IngredientPageModal = ({ list }) => {
 
         <ListItem  bottomDivider>
           <ListItem.Content>
-            <ListItem.Title>{list.name}</ListItem.Title>
-            <ListItem.Subtitle>{list.i1}</ListItem.Subtitle>
+            <ListItem.Title style={styles.title}>{list.name}</ListItem.Title>
+            <ListItem.Subtitle style={styles.subtitle}>{list.i1}</ListItem.Subtitle>
           </ListItem.Content>
         </ListItem>
     }
@@ -45,6 +45,26 @@ const styles = StyleSheet.create({
     marginLeft:"2%",
     marginRight:"2%",
   },
+  title:{
+    width:'100%',
+    color:"white",
+    backgroundColor:"#4e84aa",
+    opacity:0.70,
+    borderRadius:4,
+    padding:"3%",
+    marginBottom:"3%",
+    marginTop:'1%',
+    marginLeft:"1%",
+    textAlign:'center',
+    
+
+  },
+  subtitle:{
+    marginTop:'4%',
+    marginLeft:'5%',
+    marginRight:'5%',
+    marginBottom:'14%',
+  }
   
 });
 
