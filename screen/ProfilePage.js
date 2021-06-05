@@ -70,11 +70,11 @@ const ProfilePage = props => {
 
   return (
     <View style={styles.container}>
-    <View style={{alignItems:"flex-end",right:15}}>
-    <MaterialIcons name="exit-to-app" size={30} color="black"  onPress={()=>handlelogout()} />
+    <View>
+    <MaterialIcons style={{alignSelf:"flex-end", marginRight:'2%', marginTop:'4%'}}name="exit-to-app" size={39} color="black"  onPress={()=>handlelogout()} />
     </View>
-    <Text>"HOŞGELDİN" {name} {surname} </Text>
-    <Text>FAVORİ ÜRÜNLER </Text>
+    <Text style={styles.hosgeldin}> HOŞGELDİN {name} {surname} </Text>
+    <Text style={styles.fav}>FAVORİ ÜRÜNLERİN: </Text>
   <ScrollView>
       <FlatList
                 data={icerik}
@@ -93,9 +93,30 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
-    alignItems: 'center',
     justifyContent: 'center',
   },
+  hosgeldin:{
+    marginTop:"8%",
+    fontStyle:"italic",
+    fontWeight:"bold",
+    alignSelf:"center",
+    borderBottomWidth:2,
+    borderColor:"black",
+
+  },
+  fav:{ 
+  width:"94%",
+  textAlign:"center",
+  marginTop:"18%",
+  alignSelf:"center",
+  borderWidth:2,
+  borderColor:"black",
+  backgroundColor:"#e3c3c5",
+  padding:"3%",
+  borderRadius:5,
+  
+
+}
 });
 
 export default ProfilePage;
