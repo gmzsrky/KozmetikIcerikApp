@@ -9,19 +9,39 @@ import { Entypo } from '@expo/vector-icons';
 import Product from './Product';
 import { AntDesign } from '@expo/vector-icons';
 import {Dimensions} from 'react-native';
-import {  Badge, } from 'react-native-elements'
+import {  Badge, } from 'react-native-elements';
 //disable yellow warnings on EXPO client!
 console.disableYellowBox = true;
 
 const productHome = ({ list }) => { 
 
-  const [x,setx]=useState([]);
+  const [urunler,setUrunler]=useState([]);
   
   const [productName, setProductName] = useState("");
   const [productvisible, setProductVisible] = useState(false);
   const [heart, setHeart] = useState(false);
   const [inputs, setInputs] = useState([{key: '', value: ''}]);
   var user = Firebase.auth().currentUser.email;
+
+
+  useEffect(() => {
+    
+    Firebase.firestore().collection(user).where("fav", "==", true)
+    .onSnapshot((querySnapshot) => {
+        var favs = [];
+        querySnapshot.forEach((doc) => {
+            favs.push(doc.data().name);
+        });
+        if(favs.indexOf(list.urunAdi)!=-1)
+        {
+          setHeart(true);
+        }
+    });
+
+
+
+  },[heart]);
+
 
 
   const inputHandler = (text)=>{
@@ -47,7 +67,7 @@ const productHome = ({ list }) => {
     }  
 
   const productPage=()=>{
-    const food=[...x];
+    const _Urunler=[...urunler];
    Firebase.firestore().collection('Bakod').where("urunAdi", "==", list.urunAdi)
    .get()
    .then((querySnapshot) => {
@@ -57,7 +77,7 @@ const productHome = ({ list }) => {
       {veri.map((item) => Firebase.firestore().collection("Deneme").where("name", "==", item.value)
       .onSnapshot(querySnapshot => {
         querySnapshot.forEach(documentSnapshot => {
-         food.push({
+          _Urunler.push({
            ...documentSnapshot.data()
           });
         });
@@ -66,8 +86,9 @@ const productHome = ({ list }) => {
       }
     })});
 
-    setx(food);
+    setUrunler(_Urunler);
     setProductVisible(true);
+    console.log(list.urunAdi)
     }
 
     listeleme = (liste) => {
@@ -108,7 +129,7 @@ const productHome = ({ list }) => {
            </View>
            <FlatList
            style={{marginTop:"20%"}}
-                data={x}
+                data={urunler}
                 horizontal={false}
                 showsVerticalScrollIndicator={true}
                 renderItem={({ item }) => listeleme(item)}
@@ -121,12 +142,13 @@ const productHome = ({ list }) => {
 
           <TouchableOpacity>
          <Card style={styles.card}>
-        <Card.Title style={{fontSize:23}}>{list.urunAdi}
-    
-          <TouchableOpacity   onPress={()=>inputHandler(list.urunAdi)}>
-        <AntDesign name={heart ? "heart" : "hearto"}size={24} color="red"/>
+         <TouchableOpacity style={{alignItems:'flex-end'}}  onPress={()=>inputHandler(list.urunAdi)}>
+        <AntDesign  name={heart ? "heart" : "hearto"}size={24} color="red"/>
         
         </TouchableOpacity>
+        <Card.Title style={{fontSize:23}}>{list.urunAdi.toUpperCase()}
+               
+ 
         </Card.Title>
         <Card.Divider/>
         <Card.Image style={{resizeMode: 'cover'}} source={require('../assets/yuuz.jpg')}>

@@ -1,14 +1,14 @@
 import { StatusBar } from 'expo-status-bar';
 import React, { useState ,useEffect,useCallback} from "react";
 import { ScrollView } from 'react-native';
-import { TouchableOpacity,FlatList,Text, Modal,Pressable,ImageBackground} from 'react-native';
+import { TouchableOpacity,FlatList,Text, Modal,Pressable,ImageBackground,View} from 'react-native';
 import { StyleSheet} from 'react-native';
 import { Card, Button, Icon,SearchBar} from 'react-native-elements'
 import { Entypo } from '@expo/vector-icons'; 
 import { AntDesign } from '@expo/vector-icons';
 import Firebase from '../config/firebase'
 import ProductHome from "../components/productHome"
-
+import {  Badge, } from 'react-native-elements';
 
 //disable yellow warnings on EXPO client!
 console.disableYellowBox = true;
@@ -17,9 +17,18 @@ const HomePage = () => {
   const [search, setsearch] = useState("");
   const [urun, setUrun] = useState([]);
   const [modal, setModal] = useState(false);
+  
+  const [productName, setProductName] = useState("");
+  const [productvisible, setProductVisible] = useState(false);
+
   updateSearch = (search) => {
     setsearch( search );
+    console.log({search})
+  };
 
+  
+  listeleme = (liste) => {
+    return  <Product list={liste}/>
   };
 
 
@@ -51,7 +60,30 @@ const HomePage = () => {
   
       setModal(true);
   } 
+  const searchFun=(searchProduct)=>{
+    const _Urunler=[...urun];
+    Firebase.firestore().collection('Bakod').where("urunAdi", "==", searchProduct)
+    .get()
+    .then((querySnapshot) => {
+        querySnapshot.forEach((doc) => {
+       const veri = doc.data().icerik;
+       setProductName(doc.data().urunAdi);
+       {veri.map((item) => Firebase.firestore().collection("Deneme").where("name", "==", item.value)
+       .onSnapshot(querySnapshot => {
+         querySnapshot.forEach(documentSnapshot => {
+           _Urunler.push({
+            ...documentSnapshot.data()
+           });
+         });
+       }));
+       
+       }
+     })});
+ 
+     setUrun(_Urunler);
+     setProductVisible(true);
 
+  }
 
   //firebase
   const [x,setx]=useState("");
@@ -97,13 +129,53 @@ const HomePage = () => {
             </ScrollView>
           </Modal>
 
+          <Modal
+            animationType="slide"
+            visible={productvisible}
+             onRequestClose={()=>closeModal()}
+          >
+            <ScrollView>
+            <View style={styles.middle} >
+            <TouchableOpacity
+              style={[styles.button]}
+              onPress={() =>closeModal()}
+            >
+              <AntDesign name="closecircle" size={24} color="black" />
+            </TouchableOpacity>
+            <Text style={styles.text}>{productName.toUpperCase()}</Text>
+            </View>
+            <View style={{flexDirection:"row",justifyContent:"space-around",marginTop:"3%"}}>
+           <Badge value="1" status="success"/>
+           <Badge value="2" status="success"  />
+           <Badge value="3" status="warning"  />
+           <Badge value="4" status="warning"  />
+           <Badge value="5" status="error"  />
+           </View>
+           <View style={{flexDirection:"row",justifyContent:"space-around"}}>
+           <Text>Temiz   </Text>
+           <Text>İyi</Text>
+          <Text>İdare Eder</Text>
+          <Text>Kötü</Text>
+          <Text>Zararlı</Text>
+           </View>
+           <FlatList
+           style={{marginTop:"20%"}}
+                data={urun}
+                horizontal={false}
+                showsVerticalScrollIndicator={true}
+                renderItem={({ item }) => listeleme(item)}
+                contentContainerStyle={{ flex: 1 }}
+            />
+            </ScrollView>
+          </Modal>
+
 
       
-      <TouchableOpacity style={styles.searchBar}>
+      <TouchableOpacity style={styles.searchBar} >
       <SearchBar
         platform="ios"  // ios , default, android
         placeholder="Ürün ismi giriniz.."
-        onChangeText={updateSearch}
+        onChangeText={(text) => searchFun(text)}
         value={search}
       />
       </TouchableOpacity>
@@ -222,6 +294,18 @@ const styles = StyleSheet.create({
   buttonOpen: {
     backgroundColor: "#F194FF",
   },
+  middle: {
+    height:"20%",
+    backgroundColor: "#ff9774",
+    borderBottomRightRadius: 40,
+    borderTopLeftRadius:40,
+  },
+  text:{
+  alignSelf:'center' ,
+  color:"white",
+  fontWeight:'bold',
+  fontSize:30,
+  }
 });
 
 export default HomePage; 
