@@ -73,7 +73,8 @@ const ProfilePage = props => {
     <View>
     <MaterialIcons style={{alignSelf:"flex-end", marginRight:'2%', marginTop:'4%'}}name="exit-to-app" size={39} color="black"  onPress={()=>handlelogout()} />
     </View>
-    <Text style={styles.hosgeldin}> HOŞGELDİN {name} {surname} </Text>
+    <Text style={styles.hosgeldin}> HOŞGELDİN  </Text>
+    <Text style={{fontSize:27, textAlign:"center",}}> {name} {surname} </Text>
     <Text style={styles.fav}>FAVORİ ÜRÜNLERİN: </Text>
   <ScrollView>
       <FlatList
@@ -94,6 +95,7 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#fff',
     justifyContent: 'center',
+   
   },
   hosgeldin:{
     marginTop:"8%",
@@ -102,18 +104,20 @@ const styles = StyleSheet.create({
     alignSelf:"center",
     borderBottomWidth:2,
     borderColor:"black",
+    marginBottom:"1%",
 
   },
   fav:{ 
   width:"94%",
   textAlign:"center",
-  marginTop:"18%",
+  marginTop:"13%",
   alignSelf:"center",
   borderWidth:2,
   borderColor:"black",
   backgroundColor:"#e3c3c5",
   padding:"3%",
   borderRadius:5,
+  marginBottom:"4%",
   
 
 }

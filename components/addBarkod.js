@@ -109,7 +109,7 @@ const addBarkod = ()=>{
             >
               <AntDesign name="closecircle" size={24} color="black" />
             </TouchableOpacity>
-            <Text style={styles.text}>{productName.toUpperCase()}</Text>
+            <Text style={styles.text}>{productName}</Text>
             </View>
             <View style={{flexDirection:"row",justifyContent:"space-around",marginTop:"3%"}}>
            <Badge value="1" status="success"/>
