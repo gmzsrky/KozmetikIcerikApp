@@ -143,7 +143,7 @@ const styles = StyleSheet.create({
   },
   inputText:{
     height:50,
-    color:"#FFFF"
+    color:"black"
   },
     devamBtn:{
       width:"100%",

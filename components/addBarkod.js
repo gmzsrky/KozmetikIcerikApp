@@ -3,7 +3,7 @@ import { View, Text, TextInput, TouchableOpacity, StyleSheet, ScrollView,AsyncSt
 import { AntDesign } from '@expo/vector-icons';
 import Firebase from '../config/firebase';
 import SelectPicker from 'react-native-form-select-picker';
-import Product from "./Product";
+import Product from "./product";
 import { Ionicons } from '@expo/vector-icons'; 
 import { Avatar, Badge, Icon, withBadge } from 'react-native-elements'
 
@@ -277,7 +277,7 @@ const styles = StyleSheet.create({
     fontWeight:"bold",
   },
   middle: {
-    height:"20%",
+    height:"15%",
     backgroundColor: "#ff9774",
     borderBottomRightRadius: 40,
     borderTopLeftRadius:40,

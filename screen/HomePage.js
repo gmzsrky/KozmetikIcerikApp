@@ -6,10 +6,12 @@ import { StyleSheet} from 'react-native';
 import { Card, Button, Icon,SearchBar} from 'react-native-elements'
 import { Entypo } from '@expo/vector-icons'; 
 import { AntDesign } from '@expo/vector-icons';
-import Firebase from '../config/firebase'
-import ProductHome from "../components/productHome"
+import Firebase from '../config/firebase';
+import ProductHome from "../components/productHome";
+import Product from "../components/product";
 import {  Badge, } from 'react-native-elements';
-
+import { TextInput } from 'react-native';
+import { Ionicons } from '@expo/vector-icons';
 //disable yellow warnings on EXPO client!
 console.disableYellowBox = true;
 
@@ -18,22 +20,19 @@ const HomePage = () => {
   const [urun, setUrun] = useState([]);
   const [modal, setModal] = useState(false);
   
+  const [text, onChangeText] = React.useState("");
   const [productName, setProductName] = useState("");
   const [productvisible, setProductVisible] = useState(false);
 
-  updateSearch = (search) => {
-    setsearch( search );
-    console.log({search})
-  };
 
-  
-  listeleme = (liste) => {
+  renderItem = (liste) => {
     return  <Product list={liste}/>
   };
 
 
   closeModal = () => {
     setModal(false);
+    setProductVisible(false);
   };
   renderList = (list) => {
     return  <ProductHome list={list}/>
@@ -60,9 +59,9 @@ const HomePage = () => {
   
       setModal(true);
   } 
-  const searchFun=(searchProduct)=>{
+  const searchFun=()=>{
     const _Urunler=[...urun];
-    Firebase.firestore().collection('Bakod').where("urunAdi", "==", searchProduct)
+    Firebase.firestore().collection('Bakod').where("urunAdi", "==", text)
     .get()
     .then((querySnapshot) => {
         querySnapshot.forEach((doc) => {
@@ -85,24 +84,7 @@ const HomePage = () => {
 
   }
 
-  //firebase
-  const [x,setx]=useState("");
-  const ref =  Firebase.firestore().collection('Bakod');
-          const getDoc = ref.doc("8562354")
-          .onSnapshot(doc => {
-            const data = doc.data().icerik;
 
-            const privateMessages = [];
-            for (const urun in data) {
-              privateMessages.push({
-                urun:data[urun].urun,
-              });
-            }
-
-            setx(privateMessages)
-          }
-          
-        ); 
   return (
   <ImageBackground style={{flex: 1, opacity: 0.9,}}  source={require('../assets/home.png')}>
   <ScrollView style={styles.container}>
@@ -134,7 +116,6 @@ const HomePage = () => {
             visible={productvisible}
              onRequestClose={()=>closeModal()}
           >
-            <ScrollView>
             <View style={styles.middle} >
             <TouchableOpacity
               style={[styles.button]}
@@ -158,28 +139,30 @@ const HomePage = () => {
           <Text>Kötü</Text>
           <Text>Zararlı</Text>
            </View>
+           
+           <ScrollView>
            <FlatList
            style={{marginTop:"20%"}}
                 data={urun}
                 horizontal={false}
                 showsVerticalScrollIndicator={true}
-                renderItem={({ item }) => listeleme(item)}
+                renderItem={({ item }) => renderItem(item)}
                 contentContainerStyle={{ flex: 1 }}
             />
             </ScrollView>
           </Modal>
 
-
-      
-      <TouchableOpacity style={styles.searchBar} >
-      <SearchBar
-        platform="ios"  // ios , default, android
-        placeholder="Ürün ismi giriniz.."
-        onChangeText={(text) => searchFun(text)}
-        value={search}
+       <View style={{flexDirection:"row"}}>
+          <TextInput
+        style={styles.input}
+        onChangeText={onChangeText}
+        value={text}
+        placeholder={"Ürün İsmi Giriniz"}
       />
-      </TouchableOpacity>
-
+        <TouchableOpacity style={styles.searchBar}  onPress={()=>searchFun()} >
+        <Ionicons  name="ios-search" size={24} color="black" />
+         </TouchableOpacity>
+         </View>
 <TouchableOpacity onPress={()=>urunPage("Yüz Bakımı")}>
      <Card style={styles.card}>
   <Card.Title style={{fontSize:23}}>YÜZ BAKIMI</Card.Title>
@@ -277,11 +260,10 @@ const styles = StyleSheet.create({
     
   },
   searchBar:{
-    width:"96%",
-    marginTop:"3%",
+    marginTop:"5%",
     marginBottom:"4.5%",
     marginLeft:"2%",
-    marginRight:"2%",
+    marginRight:"5%",
   },
   card:{
     alignItems:"center",
@@ -295,7 +277,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#F194FF",
   },
   middle: {
-    height:"20%",
+    height:"15%",
     backgroundColor: "#ff9774",
     borderBottomRightRadius: 40,
     borderTopLeftRadius:40,
@@ -305,7 +287,14 @@ const styles = StyleSheet.create({
   color:"white",
   fontWeight:'bold',
   fontSize:30,
-  }
+  },
+  input: {
+    width:"80%",
+    height: "70%",
+    margin: 12,
+    borderWidth: 1,
+    borderRadius:15,
+  },
 });
 
 export default HomePage; 

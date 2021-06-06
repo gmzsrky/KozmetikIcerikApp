@@ -4,8 +4,6 @@ import Firebase from '../config/firebase'
 import { MaterialIcons } from '@expo/vector-icons';
 import { StyleSheet, Text, View ,FlatList,ScrollView} from 'react-native';
 import FavProduct from "../components/FavProduct";
-import {Dimensions} from 'react-native';
-import WavyHeader from "../components/WavyHeader";
 
 const ProfilePage = props => { 
 

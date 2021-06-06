@@ -6,7 +6,7 @@ import { StyleSheet} from 'react-native';
 import { Card, Button, Icon,SearchBar} from 'react-native-elements';
 import Firebase from '../config/firebase'
 import { Entypo } from '@expo/vector-icons'; 
-import Product from './Product';
+import Product from './product';
 import { AntDesign } from '@expo/vector-icons';
 import {Dimensions} from 'react-native';
 import {  Badge, } from 'react-native-elements';
@@ -244,7 +244,10 @@ const productHome = ({ list }) => {
       color:"white",
       fontWeight:'bold',
       fontSize:30,
-      }
+      },
+      button: {
+        flexDirection:"row-reverse",
+       },
     });
     
 

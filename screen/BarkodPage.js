@@ -3,7 +3,7 @@ import { Text, View, StyleSheet, Button,Alert,Modal,AsyncStorage,FlatList } from
 import { BarCodeScanner } from 'expo-barcode-scanner';
 import Firebase from '../config/firebase'
 import AddBarkod from "../components/addBarkod";
-import Product from "../components/Product";
+import Product from "../components/product";
 import { TouchableOpacity } from 'react-native';
 import { AntDesign } from '@expo/vector-icons';
 import { ScrollView } from 'react-native-gesture-handler';
@@ -125,7 +125,6 @@ const BarkodPage = () =>  {
              onRequestClose={()=>closeModal()}
           >
      
-            <ScrollView>
         
             <View style={styles.middle} >
             <TouchableOpacity
@@ -151,6 +150,7 @@ const BarkodPage = () =>  {
           <Text>Zararlı</Text>
            </View>
 
+           <ScrollView>
            <FlatList
                 data={array}
                 horizontal={false}
@@ -187,7 +187,7 @@ const styles = StyleSheet.create({
     textAlign: "center"
   },
   middle: {
-    height:"20%",
+    height:"15%",
     backgroundColor: "#ff9774",
     borderBottomRightRadius: 40,
     borderTopLeftRadius:40,
