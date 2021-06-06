@@ -69,12 +69,12 @@ const ProfilePage = props => {
   return (
     <View style={styles.container}>
     <View>
-    <MaterialIcons style={{alignSelf:"flex-end", marginRight:'2%', marginTop:'4%'}}name="exit-to-app" size={39} color="black"  onPress={()=>handlelogout()} />
+    <MaterialIcons style={{alignSelf:"flex-end", marginRight:'2%', marginTop:'4%'}} name="exit-to-app" size={39} color="black"  onPress={()=>handlelogout()} />
     </View>
     <Text style={styles.hosgeldin}> HOŞGELDİN  </Text>
     <Text style={{fontSize:27, textAlign:"center",}}> {name} {surname} </Text>
     <Text style={styles.fav}>FAVORİ ÜRÜNLERİN: </Text>
-  <ScrollView>
+  <ScrollView style={{marginHorizontal:"25%",marginTop:"3%"}}>
       <FlatList
                 data={icerik}
                 horizontal={false}

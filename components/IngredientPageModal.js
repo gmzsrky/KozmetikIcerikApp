@@ -14,6 +14,7 @@ const IngredientPageModal = ({ list }) => {
         <ListItem  bottomDivider>
           <ListItem.Content>
             <ListItem.Title style={styles.title}>{list.name}</ListItem.Title>
+            <ListItem.Subtitle style={styles.subtitle2}>{list.i2.toUpperCase()}</ListItem.Subtitle>
             <ListItem.Subtitle style={styles.subtitle}>{list.i1}</ListItem.Subtitle>
           </ListItem.Content>
         </ListItem>
@@ -64,6 +65,13 @@ const styles = StyleSheet.create({
     marginLeft:'5%',
     marginRight:'5%',
     marginBottom:'14%',
+  },
+  subtitle2:{
+    marginTop:'4%',
+    marginBottom:'14%',
+    textAlign:"center",
+    fontWeight:"bold",
+    fontSize:20
   }
   
 });

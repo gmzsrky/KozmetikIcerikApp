@@ -47,7 +47,6 @@ const AppNavigationContainer = () => {
           options={{
             headerShown:true,
             headerLeft:false,
-            headerBackTitle:"eeee"
           }}
         />
         <Stack.Screen name="Splash"  component={Splash} />

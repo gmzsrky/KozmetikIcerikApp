@@ -9,7 +9,7 @@ console.disableYellowBox = true;
 const FavProduct = ({ list }) => {
 
   return (
-    <View style={{flexDirection:"row"}}>
+    <View style={{flexDirection:"row" ,marginTop:"3%"}}>
      <AntDesign name="heart" size={24} color="red"/>
     <Text>{list.name}</Text>
   </View>

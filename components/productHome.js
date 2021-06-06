@@ -17,6 +17,7 @@ const productHome = ({ list }) => {
 
   const [urunler,setUrunler]=useState([]);
   
+  const [i3, seti3] = useState("");
   const [productName, setProductName] = useState("");
   const [productvisible, setProductVisible] = useState(false);
   const [heart, setHeart] = useState(false);
@@ -37,10 +38,7 @@ const productHome = ({ list }) => {
           setHeart(true);
         }
     });
-
-
-
-  },[heart]);
+  },[heart,productvisible]);
 
 
 
@@ -74,6 +72,7 @@ const productHome = ({ list }) => {
        querySnapshot.forEach((doc) => {
       const veri = doc.data().icerik;
       setProductName(doc.data().urunAdi);
+      seti3(doc.data().i3);
       {veri.map((item) => Firebase.firestore().collection("Deneme").where("name", "==", item.value)
       .onSnapshot(querySnapshot => {
         querySnapshot.forEach(documentSnapshot => {
@@ -88,7 +87,6 @@ const productHome = ({ list }) => {
 
     setUrunler(_Urunler);
     setProductVisible(true);
-    console.log(list.urunAdi)
     }
 
     listeleme = (liste) => {
@@ -103,7 +101,6 @@ const productHome = ({ list }) => {
             visible={productvisible}
              onRequestClose={()=>closeModal()}
           >
-            <ScrollView>
             <View style={styles.middle} >
             <TouchableOpacity
               style={[styles.button]}
@@ -127,6 +124,9 @@ const productHome = ({ list }) => {
           <Text>Kötü</Text>
           <Text>Zararlı</Text>
            </View>
+           
+          <Text>{i3}</Text>
+           <ScrollView>
            <FlatList
            style={{marginTop:"20%"}}
                 data={urunler}

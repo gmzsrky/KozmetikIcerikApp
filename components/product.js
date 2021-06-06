@@ -7,10 +7,16 @@ import { Card, Badge,} from 'react-native-elements';
 console.disableYellowBox = true;
 
 const Product = ({ list }) => {
-  
+
+
+const [sayac,setSayac]=useState(0);
+
+console.log(list.i2);
+
   return (
         <Card style={styles.card}>
         <Card.Title style={{fontSize:23}}>{list.name}</Card.Title>
+        <Text style={styles.text}>{list.i2.toUpperCase()}</Text>
         <Card.Divider/>
         <Text style={{marginBottom:"4%"}}>FONKSİYON: {list.fonksiyon}</Text>
         <Text style={{marginBottom:"4%"}}>İRİTASYON: {list.irite}</Text>
@@ -92,6 +98,11 @@ const styles = StyleSheet.create({
   card:{
     alignItems:"center",
     justifyContent:"center"
+  },
+  text:
+  {
+    justifyContent:"center",
+    textAlign:"center"
   }
 });
 
